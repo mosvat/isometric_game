@@ -5,6 +5,7 @@ var win = w;
 var can;
 var	ctx;
 var imagesArr = {};
+var renders;
 
 var camera = {
   x: 0,
@@ -19,7 +20,28 @@ var mouse = {
 win.addEventListener("resize",resize);
 win.addEventListener("mousemove",mousemove);
 win.addEventListener("keydown",keydown);
-win.addEventListener("load",init);  
+win.addEventListener("load",init); 
+win.addEventListener("click",function(){
+  var _pos = isoTo2D({
+    x: mouse.x + camera.x,
+    y: mouse.y + camera.y 
+  }); 
+    
+  _pos.x += BLOCK_SIZE/2;  
+  _pos.y -= BLOCK_SIZE/2; 
+  
+  _pos.x = Math.floor(_pos.x/BLOCK_SIZE);
+  _pos.y = Math.floor(_pos.y/BLOCK_SIZE);
+  
+  console.log(_pos.x,_pos.y);
+  if(map.structure[_pos.x] == undefined) map.structure[_pos.x] = [];
+  // if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = 1;
+  map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
+  
+  
+}); 
+
+ 
 
 if (win.addEventListener) {
   if ('onwheel' in document) {
@@ -45,8 +67,9 @@ function onWheel(e) {
 function init(e) {
 	can = document.getElementById("canvas");
 	ctx = can.getContext("2d");
+  renders = window.renders.call(this,ctx,twoDToIso,isoTo2D,imagesArr,camera);
+  console.log(renders);
 
-  
   function loadImages(sources, callback) {
     var loadedImages = 0;
     var numImages = 0;
@@ -121,29 +144,13 @@ function render(data) {
     ctx.imageSmoothingEnabled = false;
   var s = 100;
   var ss = 0;
-  for(var i = 0; i < map.length; i++)
-    for(var j = 0; j < map[i].length; j++){
- 
-
-      var _pos = twoDToIso({
-        x: j*BLOCK_SIZE,
-        y: i*BLOCK_SIZE
-      });
-      
-      ctx.drawImage(
-				imagesArr["img/forest.png"],
-					0,
-					32,
-          64,
-					64,
-					_pos.x - camera.x,
-					_pos.y - camera.y,
-          BLOCK_SIZE*2,
-					BLOCK_SIZE*2
-			);
-      //ctx.fillText(++ss, _pos.x + BLOCK_SIZE - camera.x, _pos.y + BLOCK_SIZE/2 - camera.y);
-    }  
-  
+  for(var i = 0; i < map.structure.length; i++)
+    try{
+      for(var j = 0; j < map.structure[i].length; j++)
+        if(map.structure[i][j] == 1) renders.ground(i,j,0);
+    }catch(err){
+      console.log(err);
+    };
   ctx.font = "35px Arial";
   ctx.fillStyle = "Black";  
   ctx.fillText((mouse.x + camera.x) + " | " + (mouse.y + camera.y), 5 , 35 );
@@ -183,6 +190,11 @@ function render(data) {
   
 };			
 
+
+})(window);
+
+
+
   function twoDToIso(p){
     var point = {};
     point.x = (p.x + p.y);
@@ -198,11 +210,6 @@ function render(data) {
   return point;
  };
  
-})(window);
-
-
-
-
 
 
 
