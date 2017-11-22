@@ -1,4 +1,4 @@
-var BLOCK_SIZE = 100;
+var BLOCK_SIZE = 64;
 
 (function Game(w) {
 var win = w; 
@@ -26,13 +26,29 @@ var mouse = {
   y: 0
 }
 
-win.addEventListener("resize",resize);
-win.addEventListener("mousemove",mousemove);
-win.addEventListener("keydown",keydown);
-win.addEventListener("load",init); 
-win.addEventListener("mousedown",function(e){
+if (win.addEventListener) {
+  if ('onwheel' in document) {
+    win.addEventListener("wheel", onWheel);
+    } else if ('onmousewheel' in document) {
+          win.addEventListener("mousewheel", onWheel);
+    } else {
+      win.addEventListener("MozMousePixelScroll", onWheel);
+    }
+  } else {
+      win.attachEvent("onmousewheel", onWheel);
+  };
 
-  var _pos = isoTo2D({
+function onWheel(e) {
+  e = e || window.event;
+  var delta = e.deltaY || e.detail || e.wheelDelta;
+  var info = document.getElementById('delta');
+  // info.innerHTML = +info.innerHTML + delta;
+  BLOCK_SIZE += (delta/100)*16;
+  e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+  }
+  
+function onmousedown(e) {
+var _pos = isoTo2D({
     x: mouse.x + camera.x,
     y: mouse.y + camera.y 
   }); 
@@ -54,7 +70,7 @@ win.addEventListener("mousedown",function(e){
   if(e.button == 0) {
     finish_dot = start_dot;
     start_dot = _pos;
-    last_way = way(start_dot,finish_dot,window.map.structure,["w"]);
+    last_way = way(start_dot,finish_dot,window.map.structure,["w","rif"]);
     return;
   };
   
@@ -62,7 +78,7 @@ win.addEventListener("mousedown",function(e){
 
   
   if(map.structure[_pos.x] == undefined) map.structure[_pos.x] = [];
-  if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = 0;
+  if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = "w";
   
   
   
@@ -90,38 +106,24 @@ win.addEventListener("mousedown",function(e){
 
   //map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
   
-  last_way = way(start_dot,finish_dot,window.map.structure,["w"]);
-}); 
-
- 
-
-if (win.addEventListener) {
-  if ('onwheel' in document) {
-    win.addEventListener("wheel", onWheel);
-    } else if ('onmousewheel' in document) {
-          win.addEventListener("mousewheel", onWheel);
-    } else {
-      win.addEventListener("MozMousePixelScroll", onWheel);
-    }
-  } else {
-      win.attachEvent("onmousewheel", onWheel);
-  };
-
-function onWheel(e) {
-  e = e || window.event;
-  var delta = e.deltaY || e.detail || e.wheelDelta;
-  var info = document.getElementById('delta');
-  // info.innerHTML = +info.innerHTML + delta;
-  BLOCK_SIZE += delta/10;
-  e.preventDefault ? e.preventDefault() : (e.returnValue = false);
-  }
+  last_way = way(start_dot,finish_dot,window.map.structure,["w","rif"]);  
+}  
   
+  
+  
+  
+win.addEventListener("load",init);   
 function init(e) {
 	can = document.getElementById("canvas");
 	ctx = can.getContext("2d");
   renders = window.renders.call(this,ctx,twoDToIso,isoTo2D,imagesArr,camera);
-  console.log(renders);
 
+  win.addEventListener("resize",resize);
+  win.addEventListener("keydown",keydown);
+  
+  can.addEventListener("mousemove",mousemove);
+  can.addEventListener("mousedown",onmousedown);
+ 
   function loadImages(sources, callback) {
     var loadedImages = 0;
     var numImages = 0;
@@ -208,7 +210,10 @@ function render(data) {
   ctx.fillText((_pos.x+BLOCK_SIZE/2) + " | " + (_pos.y-BLOCK_SIZE/2), 5 , 35 );
   
   
-  
+    //way
+  for(var i = 0; i < last_way.length; i++) 
+    renders.ground(last_way[i].x,last_way[i].y,"g");
+  //
   
   
   renders.ground(
@@ -224,10 +229,7 @@ function render(data) {
     "b"
   );  
   
-  //way
-  for(var i = 0; i < last_way.length; i++) 
-    renders.ground(last_way[i].x,last_way[i].y,"g");
-  //
+
   
   
   
@@ -319,12 +321,7 @@ function way(start,finish,_map,_sub = []){
     ]
   ];
   
-  var a = [
-    {x: -1, y: 0},
-    {x: 0, y: -1},
-    {x: 1, y: 0},
-    {x: 0, y: 1}
-  ]
+ 
   
   var w = 0;
   cycle();
@@ -353,19 +350,7 @@ function way(start,finish,_map,_sub = []){
   function cycle() {
     var _array_dots = dots_pack[w];
 
-    function add(x,y,f){
-      if((map[x] != undefined) && (map[x][y] != undefined) && (_sub.indexOf(map[x][y])) == -1) {
 
-        map[x][y] = undefined;
-        if(dots_pack[(w+1)] == undefined) dots_pack[(w+1)] = []; //add _array_dots
-        dots_pack[(w+1)].push({
-          f: f,
-          x: x,
-          y: y
-        });
-      }
-    }
-    
     for(var i = 0; i < _array_dots.length; i++){
       var _dot = _array_dots[i];
       
@@ -373,10 +358,39 @@ function way(start,finish,_map,_sub = []){
         __way = getway(_dot);
         return;
       }
-  
+      var a = [
+          [{x: -1, y:  0},[4,5],1],
+          [{x:  0, y: -1},[5,6],1],
+          [{x:  1, y:  0},[6,7],1],
+          [{x:  0, y:  1},[7,4],1],
+          [{x: -1, y:  1},[],-2],
+          [{x: -1, y: -1},[],-2],
+          [{x:  1, y: -1},[],-2],
+          [{x:  1, y:  1},[],-2]
+         
+      ];
+      
       for(var j = 0; j < a.length; j++){
-        var s = a[j];
-        add(_dot.x + s.x,_dot.y + s.y,_dot);
+
+        var s = a[j][0];
+        
+        var x = _dot.x + s.x,
+            y = _dot.y + s.y;
+        
+        if((map[x] != undefined) && (map[x][y] != undefined) && ((_sub.indexOf(map[x][y])) == -1) && (a[j][2] >= 0)) {
+          
+         for(var h = 0; h < a[j][1].length; h++)
+          a[a[j][1][h]][2]++;
+
+          map[x][y] = undefined;
+          if(dots_pack[(w+1)] == undefined) dots_pack[(w+1)] = []; //add _array_dots
+          dots_pack[(w+1)].push({
+            f: _dot,
+            x: x,
+            y: y
+          });
+      }
+        
       }
     }
     if(dots_pack[++w] != undefined) cycle();
@@ -406,7 +420,19 @@ return str;
  
  
  
- 
+ function generate(k = 0.1,x = 0.15) {
+  for (var i = 0; i < 40; i++) {
+    if(window.map.structure[i] == undefined ) window.map.structure[i] = [];
+    for (var j = 0; j < 40; j++) {
+      var value = Math.abs(noise.perlin2(i / x, j / x));
+      if(value > k) {
+        window.map.structure[i][j] = "gr";
+      }else{
+        window.map.structure[i][j] = "w";
+      };
+    }
+  }
+ }
  
  
  

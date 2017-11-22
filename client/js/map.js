@@ -44,42 +44,27 @@ window.units = (function() {
   var units = {};
   
   
-  units["r"] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 0,
-    w: 64,
-		h: 32
-  }; 
   
-  units["g"] = {
-    img: "img/forest.png",
-    x: 64,
-		y: 0,
-    w: 64,
-		h: 32
-  };   
-
-  units["b"] = {
-    img: "img/forest.png",
-    x: 128,
-		y: 0,
-    w: 64,
-		h: 32
-  };   
-  
-  units[0] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 0,
-    w: 64,
-		h: 32
-  };
   
   units["w"] = {
     img: "img/forest.png",
     x: 512,
 		y: 545,
+    w: 64,
+		h: 32
+  };
+    units["rif"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 673,
+    w: 64,
+		h: 32
+  };
+
+  units["gr"] = {
+    img: "img/forest.png",
+    x: 384,
+		y: 33,
     w: 64,
 		h: 32
   };
@@ -119,7 +104,7 @@ window.units = (function() {
 
     units["b_t_r"] = {
     img: "img/forest.png",
-    x: 512,
+    x: 256,
 		y: 545,
     w: 64,
 		h: 32
@@ -149,22 +134,37 @@ window.units = (function() {
 		h: 32
   };
   
-  units[3] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 673,
-    w: 64,
-		h: 32
-  };
 
-  units["gr"] = {
+    units["0"] = {
     img: "img/forest.png",
-    x: 384,
+    x: 512,
 		y: 33,
     w: 64,
 		h: 32
   };
+    units["r"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 0,
+    w: 64,
+		h: 32
+  }; 
   
+  units["g"] = {
+    img: "img/forest.png",
+    x: 64,
+		y: 0,
+    w: 64,
+		h: 32
+  };   
+
+  units["b"] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 0,
+    w: 64,
+		h: 32
+  }; 
   return units;
 })();
 
@@ -177,26 +177,26 @@ window.map = (function() {
   var map = {};
   map.structure = [
 	["w","w","gr","gr","gr","w","w","w","w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","w","w","w"],
-	["w","gr","gr","w","w","w","w","w","gr","w","w","w","w","gr","gr","gr","w","w","w","w","w","3","w","w","w"],
-	["gr","gr","gr","w","gr","w","gr","gr","gr","3","gr","gr","gr","gr","w","gr","w","3","w","w","b_t_r","b_t_r","w","w","gr"],
-	["gr","w","w","gr","gr","w","gr","gr","w","w","w","gr","gr","w","gr","gr","b_t_r","b_t_r","gr","gr","gr","b_r","3","gr","gr"],
+	["w","gr","gr","w","w","w","w","w","gr","w","w","w","w","gr","gr","gr","w","w","w","w","w","rif","w","w","w"],
+	["gr","gr","gr","w","gr","w","gr","gr","gr","rif","gr","gr","gr","gr","w","gr","w","rif","w","w","b_t_r","b_t_r","w","w","gr"],
+	["gr","w","w","gr","gr","w","gr","gr","w","w","w","gr","gr","w","gr","gr","b_t_r","b_t_r","gr","gr","gr","b_r","rif","gr","gr"],
 	["gr","w","gr","gr","gr","gr","gr","w","w","w","w","w","w","gr","gr","w","b_t_r","gr","gr","gr","b_t_r","b_l","gr","gr","gr"],
-	["gr","w","gr","gr","gr","gr","w","w","3","w","w","w","gr","gr","gr","gr","gr","gr","gr","w","w","w","w","w","w"],
-	["gr","w","w","gr","gr","w","w","3","3","w","w","gr","gr","gr","gr","gr","gr","w","w","3","w","w","w","w","gr"],
+	["gr","w","gr","gr","gr","gr","w","w","rif","w","w","w","gr","gr","gr","gr","gr","gr","gr","w","w","w","w","w","w"],
+	["gr","w","w","gr","gr","w","w","rif","rif","w","w","gr","gr","gr","gr","gr","gr","w","w","rif","w","w","w","w","gr"],
 	["gr","w","gr","gr","gr","w","w","w","w","gr","gr","gr","gr","gr","gr","gr","gr","w","w","b_t_r","w","w","w","gr","gr"],
-	["gr","gr","gr","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","3","w","gr","gr","b_r","w","w","gr","gr"],
+	["gr","gr","gr","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","rif","w","gr","gr","b_r","w","w","gr","gr"],
 	["w","gr","gr","gr","gr","gr","gr","gr","w","w","b_t","b_t","b_t","w","gr","gr","w","gr","gr","gr","b_r","w","w","w","gr"],
-	["w","gr","gr","w","gr","gr","gr","w","w","w","3","w","3","w","gr","gr","gr","gr","gr","gr","b_r","w","3","w","gr"],
-	["w","gr","w","w","w","gr","gr","gr","w","w","w","w","3","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","w","gr"],
-	["w","gr","w","3","w","w","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","gr","gr"],
+	["w","gr","gr","w","gr","gr","gr","w","w","w","rif","w","rif","w","gr","gr","gr","gr","gr","gr","b_r","w","rif","w","gr"],
+	["w","gr","w","w","w","gr","gr","gr","w","w","w","w","rif","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","w","gr"],
+	["w","gr","w","rif","w","w","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","gr","gr"],
 	["w","gr","gr","w","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_t","b_t","b_t","b_t","b_l","w","w","gr","w"],
-	["w","w","gr","gr","gr","gr","w","w","w","gr","gr","gr","gr","gr","gr","b_r","w","w","w","3","3","w","w","gr","gr"],
-	["w","gr","gr","gr","gr","w","w","w","w","w","b_t","b_t","gr","gr","gr","b_r","w","w","w","3","w","3","w","w","gr"],
-	["w","gr","w","gr","w","w","w","gr","w","w","gr","w","b_t","b_t","b_t","b_l","w","w","w","3","3","w","w","gr","gr"],
-	["w","gr","w","w","w","w","gr","gr","gr","gr","gr","w","w","w","gr","3","w","w","w","w","3","w","3","gr","w"],
-	["w","gr","w","w","gr","gr","gr","gr","w","w","w","w","w","w","gr","w","w","gr","w","3","w","w","w","gr","w"],
+	["w","w","gr","gr","gr","gr","w","w","w","gr","gr","gr","gr","gr","gr","b_r","w","w","w","rif","rif","w","w","gr","gr"],
+	["w","gr","gr","gr","gr","w","w","w","w","w","b_t","b_t","gr","gr","gr","b_r","w","w","w","rif","w","rif","w","w","gr"],
+	["w","gr","w","gr","w","w","w","gr","w","w","gr","w","b_t","b_t","b_t","b_l","w","w","w","rif","rif","w","w","gr","gr"],
+	["w","gr","w","w","w","w","gr","gr","gr","gr","gr","w","w","w","gr","rif","w","w","w","w","rif","w","rif","gr","w"],
+	["w","gr","w","w","gr","gr","gr","gr","w","w","w","w","w","w","gr","w","w","gr","w","rif","w","w","w","gr","w"],
 	["w","gr","gr","w","w","gr","gr","gr","gr","w","w","w","w","w","gr","w","w","gr","gr","gr","gr","w","gr","gr","w"],
-	["w","gr","gr","gr","gr","gr","w","gr","gr","gr","3","w","w","w","gr","gr","w","3","w","w","gr","w","gr","w","w"],
+	["w","gr","gr","gr","gr","gr","w","gr","gr","gr","rif","w","w","w","gr","gr","w","rif","w","w","gr","w","gr","w","w"],
 	["w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","gr","gr","gr","gr","w","w","gr","gr","gr","w","w"],
 	["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","w","w"],
 	["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"]
