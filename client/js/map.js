@@ -40,7 +40,69 @@ window.objects = (function() {
 
 
 
+window.units = (function() {
+  var units = {};
+  
+  units[0] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 0,
+    w: 64,
+		h: 32
+  };
+  
+  units[1] = {
+    img: "img/forest.png",
+    x: 256,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
+  units[2] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
 
+  units[3] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 673,
+    w: 64,
+		h: 32
+  };
+
+  units[4] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 673,
+    w: 64,
+		h: 32
+  }; 
+
+  units[4] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 33,
+    w: 64,
+		h: 32
+  };   
+
+  units[5] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 161,
+    w: 64,
+		h: 32
+  }; 
+
+  
+  return units;
+})();
 
 
 
@@ -50,11 +112,11 @@ window.objects = (function() {
 window.map = (function() {
   var map = {};
   map.structure = [
-    [1,0,1,1,1],
-    [1,0,1,0,0],
     [1,1,1,1,1],
-    [0,0,1,0,1],
-    [1,1,1,0,1]
+    [2,2,2,2,2],
+    [3,3,3,3,3],
+    [4,4,4,4,4],
+    [1,2,3,4,1]
   ];
   return map;
 })();

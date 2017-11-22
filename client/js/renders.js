@@ -8,17 +8,24 @@ var CLASS_RENDER = function(ctx,twoDToIso,isoTo2D,imagesArr,camera) {
           y: y * BLOCK_SIZE
         });
         
+      var t = window.units[id];
+      
       ctx.drawImage(
-        imagesArr["img/forest.png"],
-        0,
-        32,
-        64,
-        64,
+        imagesArr[t.img],
+        t.x,
+        t.y,
+        t.w,
+        t.h,
         _pos.x - camera.x,
         _pos.y - camera.y,
         BLOCK_SIZE*2,
-        BLOCK_SIZE*2
+        BLOCK_SIZE
       );
+      ctx.fillText(
+        x + " | " + y, 
+        _pos.x - camera.x + BLOCK_SIZE/4,
+        _pos.y - camera.y + BLOCK_SIZE/2
+      );  
     };
   })();
   return renders;

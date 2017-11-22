@@ -33,10 +33,28 @@ win.addEventListener("click",function(){
   _pos.x = Math.floor(_pos.x/BLOCK_SIZE);
   _pos.y = Math.floor(_pos.y/BLOCK_SIZE);
   
-  console.log(_pos.x,_pos.y);
+  
   if(map.structure[_pos.x] == undefined) map.structure[_pos.x] = [];
-  // if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = 1;
-  map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
+  if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = 0;
+  
+  var _key = map.structure[_pos.x][_pos.y];
+  var set = false;
+  for(var key in window.units) {
+    if(set) {
+      map.structure[_pos.x][_pos.y] = Number(key);
+      set = false;
+      }
+    if(_key == key) set = true;
+  }
+  if(set)
+    for(var key in window.units) {
+      map.structure[_pos.x][_pos.y] = Number(key);
+      break;
+    }
+
+  
+
+  //map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
   
   
 }); 
@@ -126,14 +144,6 @@ function timeout() {
     }, 1000/31);
 };	
 
-/*
-var toRad = Math.PI / 180;
-var dZ = 45*toRad;
-var dy = 45*toRad;  
-x1 = x*Math.cos(dZ) - y*Math.sin(dZ);
-y1 = x*Math.sin(dZ) + y*Math.cos(dZ);
-*/
-
 var toRad = Math.PI / 180;
 var dZ = 45*toRad;
 
@@ -145,46 +155,56 @@ function render(data) {
   var s = 100;
   var ss = 0;
   for(var i = 0; i < map.structure.length; i++)
+    //if(map.structure[i] == undefined) continue;
     try{
       for(var j = 0; j < map.structure[i].length; j++)
-        if(map.structure[i][j] == 1) renders.ground(i,j,0);
+        //if(map.structure[i][j] == undefined) continue;
+        if(map.structure[i][j] != 0) renders.ground(i,j,map.structure[i][j]);
     }catch(err){
-      console.log(err);
+      //console.log(err);
     };
   ctx.font = "35px Arial";
   ctx.fillStyle = "Black";  
-  ctx.fillText((mouse.x + camera.x) + " | " + (mouse.y + camera.y), 5 , 35 );
+  
   
   var _pos = isoTo2D({
     x: mouse.x + camera.x,
     y: mouse.y + camera.y 
   }); 
+  ctx.fillText((_pos.x+50) + " | " + (_pos.y-50), 5 , 35 );
+  
+  
+  //==================================== Hover
+  // var _pos = isoTo2D({
+    // x: mouse.x + camera.x,
+    // y: mouse.y + camera.y 
+  // }); 
     
-  _pos.x += BLOCK_SIZE/2;  
-  _pos.y -= BLOCK_SIZE/2; 
+  // _pos.x += BLOCK_SIZE/2;  
+  // _pos.y -= BLOCK_SIZE/2; 
   
-  ctx.fillText(_pos.x + " | " + _pos.y, 5 , 70 );    
+  // ctx.fillText(_pos.x + " | " + _pos.y, 5 , 70 );    
   
-  _pos.x = Math.floor(_pos.x/BLOCK_SIZE)*BLOCK_SIZE;
-  _pos.y = Math.floor(_pos.y/BLOCK_SIZE)*BLOCK_SIZE;
+  // _pos.x = Math.floor(_pos.x/BLOCK_SIZE)*BLOCK_SIZE;
+  // _pos.y = Math.floor(_pos.y/BLOCK_SIZE)*BLOCK_SIZE;
 
 
   
-  _pos = twoDToIso(_pos);
+  // _pos = twoDToIso(_pos);
   
 
 
-  ctx.drawImage(
-				imagesArr["img/forest.png"],
-					256,
-					545,
-          64,
-					64,
-					_pos.x - camera.x,
-					_pos.y - camera.y + 3*BLOCK_SIZE/100,
-          BLOCK_SIZE*2,
-					BLOCK_SIZE*2
-			);
+  // ctx.drawImage(
+				// imagesArr["img/forest.png"],
+					// 256,
+					// 545,
+          // 64,
+					// 64,
+					// _pos.x - camera.x,
+					// _pos.y - camera.y,
+          // BLOCK_SIZE*2,
+					// BLOCK_SIZE*2
+			// );
       
  
   
