@@ -297,67 +297,90 @@ var test_arr = [
 ];
  
  //============================================================================================ 
-  function way(pos,tar,map1){
-    var map = map1.slice();
-    
+function way(start,finish,_map){
+  var map = []
+  for(var i = 0; i < _map.length; i++)
+    map[i] = _map[i].slice(0);
+  
+  
+  
+  if(map == _map) console.log("true");
+  var __way = [];
+  
+  var dots_pack = [ //Packet
+    [ // Array dots
+      start // dot
+    ]
+  ];
+  
+  var a = [
+    {x: -1, y: 0},
+    {x: 0, y: -1},
+    {x: 1, y: 0},
+    {x: 0, y: 1}
+  ]
+  
+  var w = 0;
+  cycle();
 
-     
-   function ways(pos){
-      //console.log(pos);
-      pos.father = this;
-      pos.ways = [];
-
-      var arr = [
-        [-1,0],
-        [0,-1],
-        [1,0],
-        [0,1]
-      ];
+  return __way;
       
-      var stop = false;
-      for(var i = 0; i < arr.length; i++){
-        var _pos = {
-          x: pos.x + arr[i][0],
-          y: pos.y + arr[i][1]
-        } 
-        if(_pos.x == tar.x && _pos.y == tar.y) {
-          return return_way(pos);
-          stop = true;
-          break; //done
-        }
-        if(!stop && map[_pos.x] != undefined && map[_pos.x][_pos.y] != 0 && map[_pos.x][_pos.y] != undefined) {
-          map[_pos.x][_pos.y] = 0;
-          pos.ways.push(_pos);
-          ways.call(pos,_pos);
-        }
-      }
-    }
-
-    function return_way(pos){
+  function getway(dot){
+      var _dot = dot;
       var way = [];
       
-      function push(){
-        way.unshift(pos);
-        if((pos.father.exit) && ((pos = pos.father) != undefined)) push();
+      g();
+      function g() {
+        way.unshift(_dot);
+        if(_dot.f != undefined){
+          var d = _dot.f;
+          delete _dot.f;
+          _dot = d;
+          g();
+        }
       }
-      push();
-      console.log(way);
-      return way;
-    };
+    return way;
+  }
+  
+  
+  
+  function cycle() {
+    var _array_dots = dots_pack[w];
+
+    function add(x,y,f){
+      if((map[x] != undefined) && (map[x][y] != undefined) && (map[x][y] != 0)) {
+        map[x][y] = 0;
+        if(dots_pack[(w+1)] == undefined) dots_pack[(w+1)] = []; //add _array_dots
+        dots_pack[(w+1)].push({
+          f: f,
+          x: x,
+          y: y
+        });
+      }
+    }
     
-    ways.call({exit: true},pos);
-  };
+    for(var i = 0; i < _array_dots.length; i++){
+      var _dot = _array_dots[i];
+      
+      if(_dot.x == finish.x && _dot.y == finish.y) { //find
+        __way = getway(_dot);
+        return;
+      }
+  
+      for(var j = 0; j < a.length; j++){
+        var s = a[j];
+        add(_dot.x + s.x,_dot.y + s.y,_dot);
+      }
+    }
+    if(dots_pack[++w] != undefined) cycle();
+  }
+
+}
 //============================================================================================       
     
     
     
-    
-    var point = {};
-    point.x = (2 * -p.y + p.x) / 2;
-    point.y = (2 * p.y + p.x) / 2;
-    return point;
-  };
- 
+
  
  
  
