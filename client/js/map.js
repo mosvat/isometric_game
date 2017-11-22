@@ -76,23 +76,79 @@ window.units = (function() {
 		h: 32
   };
   
-  units[1] = {
+  units["w"] = {
     img: "img/forest.png",
-    x: 256,
+    x: 512,
 		y: 545,
     w: 64,
 		h: 32
   };
   
-  units[2] = {
+  
+  units["b_r"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
+  units["b_t"] = {
     img: "img/forest.png",
     x: 128,
 		y: 545,
     w: 64,
 		h: 32
+  };  
+
+  units["b_d"] = {
+    img: "img/forest.png",
+    x: 256,
+		y: 545,
+    w: 64,
+		h: 32
+  };  
+  
+   units["b_l"] = {
+    img: "img/forest.png",
+    x: 384,
+		y: 545,
+    w: 64,
+		h: 32
+  }; 
+
+    units["b_t_r"] = {
+    img: "img/forest.png",
+    x: 512,
+		y: 545,
+    w: 64,
+		h: 32
   };
   
-
+    units["b_d_l"] = {
+    img: "img/forest.png",
+    x: 640,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
+    units["b_r_d"] = {
+    img: "img/forest.png",
+    x: 768,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
+    units["b_t_l"] = {
+    img: "img/forest.png",
+    x: 896,
+		y: 545,
+    w: 64,
+		h: 32
+  };
+  
   units[3] = {
     img: "img/forest.png",
     x: 0,
@@ -101,30 +157,13 @@ window.units = (function() {
 		h: 32
   };
 
-  units[4] = {
+  units["gr"] = {
     img: "img/forest.png",
-    x: 128,
-		y: 673,
-    w: 64,
-		h: 32
-  }; 
-
-  units[4] = {
-    img: "img/forest.png",
-    x: 0,
+    x: 384,
 		y: 33,
     w: 64,
 		h: 32
-  };   
-
-  units[5] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 161,
-    w: 64,
-		h: 32
-  }; 
-
+  };
   
   return units;
 })();
@@ -137,17 +176,31 @@ window.units = (function() {
 window.map = (function() {
   var map = {};
   map.structure = [
-    [3,1,1,3,3,1,1,1,3,3],
-    [1,3,1,3,1,3,1,3,1,1],
-    [1,1,3,1,1,1,1,1,3,1],
-    [2,2,2,2,2,2,2,2,2,2],
-    [4,4,4,4,4,4,4,4,4,4],
-    [4,4,4,4,4,4,4,4,4,4],
-    [4,4,4,4,4,4,4,4,4,4],
-    [4,4,4,4,4,4,4,4,4,4],
-    [4,4,4,4,4,4,4,4,4,4],
-    [4,4,4,4,4,4,4,4,4,4]
-  ];
+	["w","w","gr","gr","gr","w","w","w","w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","w","w","w"],
+	["w","gr","gr","w","w","w","w","w","gr","w","w","w","w","gr","gr","gr","w","w","w","w","w","3","w","w","w"],
+	["gr","gr","gr","w","gr","w","gr","gr","gr","3","gr","gr","gr","gr","w","gr","w","3","w","w","b_t_r","b_t_r","w","w","gr"],
+	["gr","w","w","gr","gr","w","gr","gr","w","w","w","gr","gr","w","gr","gr","b_t_r","b_t_r","gr","gr","gr","b_r","3","gr","gr"],
+	["gr","w","gr","gr","gr","gr","gr","w","w","w","w","w","w","gr","gr","w","b_t_r","gr","gr","gr","b_t_r","b_l","gr","gr","gr"],
+	["gr","w","gr","gr","gr","gr","w","w","3","w","w","w","gr","gr","gr","gr","gr","gr","gr","w","w","w","w","w","w"],
+	["gr","w","w","gr","gr","w","w","3","3","w","w","gr","gr","gr","gr","gr","gr","w","w","3","w","w","w","w","gr"],
+	["gr","w","gr","gr","gr","w","w","w","w","gr","gr","gr","gr","gr","gr","gr","gr","w","w","b_t_r","w","w","w","gr","gr"],
+	["gr","gr","gr","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","3","w","gr","gr","b_r","w","w","gr","gr"],
+	["w","gr","gr","gr","gr","gr","gr","gr","w","w","b_t","b_t","b_t","w","gr","gr","w","gr","gr","gr","b_r","w","w","w","gr"],
+	["w","gr","gr","w","gr","gr","gr","w","w","w","3","w","3","w","gr","gr","gr","gr","gr","gr","b_r","w","3","w","gr"],
+	["w","gr","w","w","w","gr","gr","gr","w","w","w","w","3","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","w","gr"],
+	["w","gr","w","3","w","w","gr","gr","gr","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","gr","gr"],
+	["w","gr","gr","w","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_t","b_t","b_t","b_t","b_l","w","w","gr","w"],
+	["w","w","gr","gr","gr","gr","w","w","w","gr","gr","gr","gr","gr","gr","b_r","w","w","w","3","3","w","w","gr","gr"],
+	["w","gr","gr","gr","gr","w","w","w","w","w","b_t","b_t","gr","gr","gr","b_r","w","w","w","3","w","3","w","w","gr"],
+	["w","gr","w","gr","w","w","w","gr","w","w","gr","w","b_t","b_t","b_t","b_l","w","w","w","3","3","w","w","gr","gr"],
+	["w","gr","w","w","w","w","gr","gr","gr","gr","gr","w","w","w","gr","3","w","w","w","w","3","w","3","gr","w"],
+	["w","gr","w","w","gr","gr","gr","gr","w","w","w","w","w","w","gr","w","w","gr","w","3","w","w","w","gr","w"],
+	["w","gr","gr","w","w","gr","gr","gr","gr","w","w","w","w","w","gr","w","w","gr","gr","gr","gr","w","gr","gr","w"],
+	["w","gr","gr","gr","gr","gr","w","gr","gr","gr","3","w","w","w","gr","gr","w","3","w","w","gr","w","gr","w","w"],
+	["w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","gr","gr","gr","gr","w","w","gr","gr","gr","w","w"],
+	["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","gr","gr","gr","w","w"],
+	["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"]
+];
   return map;
 })();
 

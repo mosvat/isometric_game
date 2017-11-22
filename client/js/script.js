@@ -54,7 +54,7 @@ win.addEventListener("mousedown",function(e){
   if(e.button == 0) {
     finish_dot = start_dot;
     start_dot = _pos;
-    last_way = way(start_dot,finish_dot,window.map.structure);
+    last_way = way(start_dot,finish_dot,window.map.structure,["w"]);
     return;
   };
   
@@ -90,7 +90,7 @@ win.addEventListener("mousedown",function(e){
 
   //map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
   
-  last_way = way(start_dot,finish_dot,window.map.structure);
+  last_way = way(start_dot,finish_dot,window.map.structure,["w"]);
 }); 
 
  
@@ -214,7 +214,7 @@ function render(data) {
   renders.ground(
     start_dot.x,
     start_dot.y,
-    "g"
+    "r"
   );
   
   
@@ -226,7 +226,7 @@ function render(data) {
   
   //way
   for(var i = 0; i < last_way.length; i++) 
-    renders.ground(last_way[i].x,last_way[i].y,"r");
+    renders.ground(last_way[i].x,last_way[i].y,"g");
   //
   
   
@@ -303,7 +303,7 @@ var test_arr = [
 ];
  
  //============================================================================================ 
-function way(start,finish,_map){
+function way(start,finish,_map,_sub = []){
   var map = []
   for(var i = 0; i < _map.length; i++)
     map[i] = _map[i].slice(0);
@@ -354,8 +354,9 @@ function way(start,finish,_map){
     var _array_dots = dots_pack[w];
 
     function add(x,y,f){
-      if((map[x] != undefined) && (map[x][y] != undefined) && (map[x][y] != 0)) {
-        map[x][y] = 0;
+      if((map[x] != undefined) && (map[x][y] != undefined) && (_sub.indexOf(map[x][y])) == -1) {
+
+        map[x][y] = undefined;
         if(dots_pack[(w+1)] == undefined) dots_pack[(w+1)] = []; //add _array_dots
         dots_pack[(w+1)].push({
           f: f,
@@ -388,7 +389,18 @@ function way(start,finish,_map){
     
 
  
- 
+function giveMap() {
+  var str = "[";
+  for(var i = 0; i < window.map.structure.length; i++){
+    str += "\n\t[";
+    for(var j = 0; j < window.map.structure[i].length; j++){
+      str += '"' + window.map.structure[i][j] + '"' + ((j < (window.map.structure[i].length - 1)) ? "," : "");
+    }
+    str += ((i < (window.map.structure[i].length - 1)) ? "]," : "]");
+  }
+  str += "\n]";
+return str;
+}
  
  
  
