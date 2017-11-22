@@ -7,12 +7,12 @@ var	ctx;
 var imagesArr = {};
 var renders;
 
-var lastDot_1 = lastDot_2 = {
+var start_dot = finish_dot = {
   x: 0,
   y: 0
 };
 
-
+var last_way = [];
 
 var lastKey = 0;
 
@@ -50,11 +50,14 @@ win.addEventListener("mousedown",function(e){
     _pos.y = _p;
     
   
+  
   if(e.button == 0) {
-    lastDot_2 = lastDot_1;
-    lastDot_1 = _pos;
+    finish_dot = start_dot;
+    start_dot = _pos;
+    last_way = way(start_dot,finish_dot,window.map.structure);
     return;
   };
+  
 
 
   
@@ -87,7 +90,7 @@ win.addEventListener("mousedown",function(e){
 
   //map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
   
-  
+  last_way = way(start_dot,finish_dot,window.map.structure);
 }); 
 
  
@@ -209,19 +212,22 @@ function render(data) {
   
   
   renders.ground(
-    lastDot_1.x,
-    lastDot_1.y,
+    start_dot.x,
+    start_dot.y,
     "g"
   );
   
   
   renders.ground(
-    lastDot_2.x,
-    lastDot_2.y,
+    finish_dot.x,
+    finish_dot.y,
     "b"
   );  
   
-  
+  //way
+  for(var i = 0; i < last_way.length; i++) 
+    renders.ground(last_way[i].x,last_way[i].y,"r");
+  //
   
   
   
