@@ -43,6 +43,31 @@ window.objects = (function() {
 window.units = (function() {
   var units = {};
   
+  
+  units["r"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 0,
+    w: 64,
+		h: 32
+  }; 
+  
+  units["g"] = {
+    img: "img/forest.png",
+    x: 64,
+		y: 0,
+    w: 64,
+		h: 32
+  };   
+
+  units["b"] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 0,
+    w: 64,
+		h: 32
+  };   
+  
   units[0] = {
     img: "img/forest.png",
     x: 0,

@@ -21,11 +21,23 @@ var CLASS_RENDER = function(ctx,twoDToIso,isoTo2D,imagesArr,camera) {
         BLOCK_SIZE*2,
         BLOCK_SIZE
       );
-      ctx.fillText(
-        x + " | " + y, 
-        _pos.x - camera.x + BLOCK_SIZE/4,
-        _pos.y - camera.y + BLOCK_SIZE/2
-      );  
+      
+      // var a = "[";
+// for(var i = 0; i < 100; i++){
+	// a += "[";
+    // for(var j = 0; j < 100; i++){
+		// a += Math.round(Math.random()*10)
+    // }
+	// a += "],\n";
+// }
+// console.log(a)
+      
+      
+      // ctx.fillText(
+        // x + " | " + y, 
+        // _pos.x - camera.x + BLOCK_SIZE/4,
+        // _pos.y - camera.y + BLOCK_SIZE/2
+      // );  
     };
   })();
   return renders;

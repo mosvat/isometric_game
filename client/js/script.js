@@ -7,6 +7,15 @@ var	ctx;
 var imagesArr = {};
 var renders;
 
+var lastDot_1 = lastDot_2 = {
+  x: 0,
+  y: 0
+};
+
+
+
+var lastKey = 0;
+
 var camera = {
   x: 0,
   y: 0
@@ -21,12 +30,13 @@ win.addEventListener("resize",resize);
 win.addEventListener("mousemove",mousemove);
 win.addEventListener("keydown",keydown);
 win.addEventListener("load",init); 
-win.addEventListener("click",function(){
+win.addEventListener("mousedown",function(e){
+
   var _pos = isoTo2D({
     x: mouse.x + camera.x,
     y: mouse.y + camera.y 
   }); 
-    
+  
   _pos.x += BLOCK_SIZE/2;  
   _pos.y -= BLOCK_SIZE/2; 
   
@@ -34,25 +44,46 @@ win.addEventListener("click",function(){
   _pos.y = Math.floor(_pos.y/BLOCK_SIZE);
   
   
+  
+  var _p = _pos.x;
+    _pos.x = _pos.y;
+    _pos.y = _p;
+    
+  
+  if(e.button == 0) {
+    lastDot_2 = lastDot_1;
+    lastDot_1 = _pos;
+    return;
+  };
+
+
+  
   if(map.structure[_pos.x] == undefined) map.structure[_pos.x] = [];
   if(map.structure[_pos.x][_pos.y] == undefined) map.structure[_pos.x][_pos.y] = 0;
   
-  var _key = map.structure[_pos.x][_pos.y];
-  var set = false;
-  for(var key in window.units) {
-    if(set) {
-      map.structure[_pos.x][_pos.y] = Number(key);
-      set = false;
-      }
-    if(_key == key) set = true;
-  }
-  if(set)
-    for(var key in window.units) {
-      map.structure[_pos.x][_pos.y] = Number(key);
-      break;
-    }
-
   
+  
+  
+  var _key = map.structure[_pos.x][_pos.y];
+  
+  if(lastKey == _key) {
+    var set = false;
+    for(var key in window.units) {
+      if(set) {
+        map.structure[_pos.x][_pos.y] = key;
+        set = false;
+        }
+      if(_key == key) set = true;
+    }
+    if(set)
+      for(var key in window.units) {
+        map.structure[_pos.x][_pos.y] = key;
+        break;
+      }
+    lastKey = map.structure[_pos.x][_pos.y];
+  }else{
+    map.structure[_pos.x][_pos.y] = lastKey;
+  }
 
   //map.structure[_pos.x][_pos.y] = map.structure[_pos.x][_pos.y] == 1 ? 0 : 1;
   
@@ -141,7 +172,7 @@ function timeout() {
     setTimeout(function () {
         render();
         timeout();
-    }, 1000/31);
+    }, 1000/20);
 };	
 
 var toRad = Math.PI / 180;
@@ -171,7 +202,27 @@ function render(data) {
     x: mouse.x + camera.x,
     y: mouse.y + camera.y 
   }); 
-  ctx.fillText((_pos.x+50) + " | " + (_pos.y-50), 5 , 35 );
+  ctx.fillText((_pos.x+BLOCK_SIZE/2) + " | " + (_pos.y-BLOCK_SIZE/2), 5 , 35 );
+  
+  
+  
+  
+  
+  renders.ground(
+    lastDot_1.x,
+    lastDot_1.y,
+    "g"
+  );
+  
+  
+  renders.ground(
+    lastDot_2.x,
+    lastDot_2.y,
+    "b"
+  );  
+  
+  
+  
   
   
   //==================================== Hover
@@ -188,24 +239,24 @@ function render(data) {
   // _pos.x = Math.floor(_pos.x/BLOCK_SIZE)*BLOCK_SIZE;
   // _pos.y = Math.floor(_pos.y/BLOCK_SIZE)*BLOCK_SIZE;
 
-
+  // var _p = _pos.x;
+    // _pos.x = _pos.y;
+    // _pos.y = _p;
   
   // _pos = twoDToIso(_pos);
-  
-
 
   // ctx.drawImage(
 				// imagesArr["img/forest.png"],
-					// 256,
-					// 545,
+					// 0,
+					// 0,
           // 64,
-					// 64,
+					// 32,
 					// _pos.x - camera.x,
 					// _pos.y - camera.y,
           // BLOCK_SIZE*2,
-					// BLOCK_SIZE*2
+					// BLOCK_SIZE
 			// );
-      
+  //==================================== /Hover    
  
   
 };			
@@ -215,22 +266,109 @@ function render(data) {
 
 
 
+  // function twoDToIso(p){
+    // var point = {};
+    // point.x = (p.x + p.y);
+    // point.y = (p.y - p.x) / 2; 
+    // return point;
+  // };
+  
   function twoDToIso(p){
     var point = {};
     point.x = (p.x + p.y);
-    point.y = (p.y - p.x) / 2; 
+    point.y = (p.x - p.y) / 2; 
     return point;
   };
   
-  
   function isoTo2D(p){
-  var point = {};
-  point.x = (2 * -p.y + p.x) / 2;
-  point.y = (2 * p.y + p.x) / 2;
-  return point;
- };
+    var point = {};
+    point.x = (2 * -p.y + p.x) / 2;
+    point.y = (2 * p.y + p.x) / 2;
+    return point;
+  };
  
+ //============================================================================================        
+var test_arr = [
+  [1,1,1,1,1],
+  [2,2,2,2,2],
+  [3,3,3,3,3],
+  [4,4,4,4,4],
+  [1,2,3,4,1]
+];
+ 
+ //============================================================================================ 
+  function way(pos,tar,map1){
+    var map = map1.slice();
+    
 
+     
+   function ways(pos){
+      //console.log(pos);
+      pos.father = this;
+      pos.ways = [];
+
+      var arr = [
+        [-1,0],
+        [0,-1],
+        [1,0],
+        [0,1]
+      ];
+      
+      var stop = false;
+      for(var i = 0; i < arr.length; i++){
+        var _pos = {
+          x: pos.x + arr[i][0],
+          y: pos.y + arr[i][1]
+        } 
+        if(_pos.x == tar.x && _pos.y == tar.y) {
+          return return_way(pos);
+          stop = true;
+          break; //done
+        }
+        if(!stop && map[_pos.x] != undefined && map[_pos.x][_pos.y] != 0 && map[_pos.x][_pos.y] != undefined) {
+          map[_pos.x][_pos.y] = 0;
+          pos.ways.push(_pos);
+          ways.call(pos,_pos);
+        }
+      }
+    }
+
+    function return_way(pos){
+      var way = [];
+      
+      function push(){
+        way.unshift(pos);
+        if((pos.father.exit) && ((pos = pos.father) != undefined)) push();
+      }
+      push();
+      console.log(way);
+      return way;
+    };
+    
+    ways.call({exit: true},pos);
+  };
+//============================================================================================       
+    
+    
+    
+    
+    var point = {};
+    point.x = (2 * -p.y + p.x) / 2;
+    point.y = (2 * p.y + p.x) / 2;
+    return point;
+  };
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
