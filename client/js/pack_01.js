@@ -10,10 +10,11 @@ var _pack = function() {
   
   this.isoTo2D = function(p){
     var point = {};
-    point.x = (2 * -p.y + p.x) / 2;
-    point.y = (2 * p.y + p.x) / 2;
+    point.x = p.x/2 - p.y;
+    point.y = p.x/2 + p.y;
     return point;
   };
+ 
   
   this.f = function(s,f){
     var a = f.x - s.x,
@@ -23,6 +24,8 @@ var _pack = function() {
     return {x: a, y: b};
   };
 
+  
+  
   
 };
 

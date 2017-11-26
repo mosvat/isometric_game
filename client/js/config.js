@@ -46,6 +46,12 @@ this.objects = (function() {
 
 this.units = (function() {
   var units = {};
+  var _p = {
+    x: 0,
+    y: 0,
+    w: 64,
+    h: 32
+  };
   
   
   

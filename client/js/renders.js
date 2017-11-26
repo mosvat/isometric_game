@@ -5,7 +5,7 @@
     this.ground = function(x,y,l) {
 
       var _pos = app.twoDToIso({
-          x: x * l.iso.height * app.zoom,
+          x: x * l.iso.width/2 * app.zoom,
           y: y * l.iso.height * app.zoom
         });
 
@@ -21,11 +21,13 @@
         t.w,
         t.h,
         _pos.x - app.camera.x,
-        _pos.y - app.camera.y,
+        _pos.y - app.camera.y - (l.iso.height*app.zoom)/2,
         l.iso.width * app.zoom,
         l.iso.height * app.zoom
       );
-
+      
+     
+      
     };
     
   };

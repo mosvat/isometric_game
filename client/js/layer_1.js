@@ -3,8 +3,8 @@
 var _Layer_1 = function(app) {
   
   this.iso = {
-    width: 64,
-    height: 32
+    width: 128,
+    height: 64
   };
   
   this.two = {
@@ -124,30 +124,30 @@ var _Layer_1 = function(app) {
 
 
 this.map = [
-    ["w","w","b_l","gr","gr","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b_l","gr","gr","w","w","w"],
-    ["w","b_l","gr","w","w","w","w","w","b_t_r","w","w","w","w","gr","gr","b_t_r","w","w","w","w","w","rif","w","w","w"],
-    ["b_l","gr","gr","w","b_t_r","w","b_t_l","gr","gr","rif","b_t_l","gr","gr","gr","w","b_l","w","rif","w","w","b_t_r","w","w","w","b_t_l"],
-    ["b_l","w","w","b_t_l","gr","w","gr","gr","w","w","w","b_d_l","b_r_d","w","b_t_r","b_d_l","b_t_r","b_t_r","gr","gr","gr","b_t","b_t","b_t","gr"],
-    ["b_l","w","b_t_l","gr","gr","gr","gr","w","w","w","w","w","w","b_t_l","gr","w","b_t_r","gr","gr","gr","b_d","b_d","b_d","b_d","b_d"],
-    ["b_l","w","b_d_l","gr","gr","gr","w","w","rif","w","w","w","b_t_l","gr","gr","gr","gr","gr","gr","b_d","w","w","w","w","w"],
-    ["b_l","w","w","gr","gr","w","w","rif","rif","w","w","b_t_l","gr","gr","gr","gr","gr","b_d","b_d","rif","w","w","w","w","b_t_l"],
-    ["b_l","w","gr","gr","gr","w","w","w","w","b_t_l","gr","gr","gr","gr","gr","gr","b_r_d","w","w","b_t_r","w","gr","w","b_t_l","gr"],
-    ["b_d_l","gr","gr","gr","gr","gr","w","b_t_l","gr","gr","gr","gr","gr","gr","gr","gr","rif","w","gr","gr","b_t_r","w","w","b_d_l","gr"],
-    ["w","b_l","gr","gr","gr","gr","gr","gr","w","w","b_l","b_d","b_d","b_l","gr","gr","w","gr","gr","gr","b_r","w","w","w","b_l"],
-    ["w","b_l","gr","w","gr","gr","gr","w","w","w","rif","w","rif","b_l","gr","gr","gr","gr","gr","gr","b_r","w","rif","w","b_l"],
-    ["w","b_l","w","w","w","gr","gr","b_t_r","w","w","w","w","rif","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","w","b_l"],
-    ["w","b_l","w","rif","w","w","gr","gr","b_t_r","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_r","w","w","b_t_l","gr"],
-    ["w","b_d_l","gr","w","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_t","b_t","b_t","b_t","b_r_d","w","w","b_l","w"],
-    ["w","w","b_l","gr","gr","b_r_d","w","w","w","gr","gr","gr","gr","gr","gr","b_r","w","w","w","rif","rif","w","w","b_d_l","gr"],
-    ["w","b_l","gr","gr","b_r_d","w","w","w","w","w","b_t","b_t","gr","gr","gr","b_r","w","w","w","rif","w","rif","w","w","gr"],
-    ["w","b_l","w","b_d_l","w","w","w","b_t_l","w","w","gr","b_d","b_d","b_d","b_d","b_r_d","w","w","w","rif","rif","w","w","b_t_l","b_r_d"],
-    ["w","b_l","w","w","w","w","b_t_l","gr","gr","gr","gr","w","w","w","b_l","rif","w","w","w","w","rif","w","rif","gr","w"],
-    ["w","b_l","w","w","b_t_l","gr","gr","gr","w","w","w","w","w","w","b_l","w","w","b_t_r","w","rif","w","w","w","gr","w"],
-    ["w","b_l","b_t_l","w","w","gr","gr","gr","b_t_r","w","w","w","w","w","b_l","w","w","b_d_l","gr","gr","b_t_r","w","b_t_l","b_r_d","w"],
-    ["w","b_d_l","gr","gr","gr","gr","w","b_d_l","gr","gr","rif","w","w","w","b_l","b_t_r","w","rif","w","w","gr","w","gr","w","w"],
-    ["w","w","w","w","w","w","w","w","w","w","w","b_l","gr","gr","gr","gr","gr","gr","w","w","gr","gr","gr","w","w"],
-    ["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b_d_l","gr","b_r_d","w","w"],
-    ["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+    ["w","w","b_l","gr","gr","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b_l"],
+    ["w","b_l","gr","w","w","w","w","w","b_t_r","w","w","w","w","gr","gr","b_t_r","w","w","w","w"],
+    ["b_l","gr","gr","w","b_t_r","w","b_t_l","gr","gr","rif","b_t_l","gr","gr","gr","w","b_l","w","rif","w","w"],
+    ["b_l","w","w","b_t_l","gr","w","gr","gr","w","w","w","b_d_l","b_r_d","w","b_t_r","b_d_l","b_t_r","b_t_r","gr","gr"],
+    ["b_l","w","b_t_l","gr","gr","gr","gr","w","w","w","w","w","w","b_t_l","gr","w","b_t_r","gr","gr","gr"],
+    ["b_l","w","b_d_l","gr","gr","gr","w","w","rif","w","w","w","b_t_l","gr","gr","gr","gr","gr","gr","b_d"],
+    ["b_l","w","w","gr","gr","w","w","rif","rif","w","w","b_t_l","gr","gr","gr","gr","gr","b_d","b_d","rif"],
+    ["b_l","w","gr","gr","gr","w","w","w","w","b_t_l","gr","gr","gr","gr","gr","gr","b_r_d","w","w","b_t_r"],
+    ["b_d_l","gr","gr","gr","gr","gr","w","b_t_l","gr","gr","gr","gr","gr","gr","gr","gr","rif","w","gr","gr"],
+    ["w","b_l","gr","gr","gr","gr","gr","gr","w","w","b_l","b_d","b_d","b_l","gr","gr","w","gr","gr","gr"],
+    ["w","b_l","gr","w","gr","gr","gr","w","w","w","rif","w","rif","b_l","gr","gr","gr","gr","gr","gr"],
+    ["w","b_l","w","w","w","gr","gr","b_t_r","w","w","w","w","rif","gr","gr","gr","gr","gr","gr","gr"],
+    ["w","b_l","w","rif","w","w","gr","gr","b_t_r","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["w","b_d_l","gr","w","w","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","b_t","b_t","b_t","b_t"],
+    ["w","w","b_l","gr","gr","b_r_d","w","w","w","gr","gr","gr","gr","gr","gr","b_r","w","w","w","rif"],
+    ["w","b_l","gr","gr","b_r_d","w","w","w","w","w","b_t","b_t","gr","gr","gr","b_r","w","w","w","rif"],
+    ["w","b_l","w","b_d_l","w","w","w","b_t_l","w","w","gr","b_d","b_d","b_d","b_d","b_r_d","w","w","w","rif"],
+    ["w","b_l","w","w","w","w","b_t_l","gr","gr","gr","gr","w","w","w","b_l","rif","w","w","w","w"],
+    ["w","b_l","w","w","b_t_l","gr","gr","gr","w","w","w","w","w","w","b_l","w","w","b_t_r","w","rif"],
+    ["w","b_l","b_t_l","w","w","gr","gr","gr","b_t_r","w","w","w","w","w","b_l","w","w","b_d_l","gr","gr"],
+    ["w","b_d_l","gr","gr","gr","gr","w","b_d_l","gr","gr","rif","w","w","w","b_l","b_t_r","w","rif","w","w"],
+    ["w","w","w","w","w","w","w","w","w","w","w","b_l","gr","gr","gr","gr","gr","gr","w","w"],
+    ["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+    ["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"]
   ];
 
  
@@ -155,7 +155,7 @@ this.map = [
     for(var i = 0; i < this.map.length; i++)
     try{
       for(var j = 0; j < this.map[i].length; j++)
-        app.renders.ground(i,j,this);
+        app.renders.ground(j,i,this);
     }catch(err){
     };
   }

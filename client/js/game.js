@@ -50,13 +50,15 @@ function Game() {
   app.renders = new Renders(app);  
   app.controls = new Controls(app);  
   app.layers = [
-    new Layer_1(app)
+    new Layer_1(app),
+    new Layer_2(app)
   ];
   
   this.app = app;
   
   var sources = {
 			"img/forest.png": "img/forest.png",
+      "img/layer_2.png": "img/layer_2.png"
   };
 		
   app.loadImages(sources,()=>{console.log("done")}); 
@@ -78,10 +80,28 @@ function Game() {
     if(!printed) return;
     app.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     app.context.imageSmoothingEnabled = false;
+    
     app.layers.forEach(function(i){
       i.render();
     });
-   // console.log("agaga");
+    
+    var _pos = app.isoTo2D({
+      x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[0].two.width/(app.layers[0].iso.width/2))      ),
+      y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[0].two.height/(app.layers[0].iso.height))         )
+    }); 
+    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 35 );
+    
+    
+    var _pos = app.isoTo2D({
+      x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[1].two.width/(app.layers[1].iso.width/2))      ),
+      y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[1].two.height/(app.layers[1].iso.height))         )
+    }); 
+    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 55 );
+    
+    
+    
+    
+    
     setTimeout(render,delay);
   };
   

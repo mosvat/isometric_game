@@ -24,7 +24,12 @@
 
   window.addEventListener("keydown",keydown);
   window.addEventListener("resize",resize); 
+  window.addEventListener("mousemove",mousemove);
   
+  function mousemove(e) {
+    app.mouse.x = e.offsetX == undefined ? e.layerX : e.offsetX;
+		app.mouse.y = e.offsetY == undefined ? e.layerY : e.offsetY; 
+  };	
   
   
   function resize(e) {
