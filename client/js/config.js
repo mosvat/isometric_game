@@ -1,9 +1,13 @@
 (function() {
 
+var config = function() {
+  
+  
 
 
 
-window.block = {
+
+this.block = {
   size: 100,
   width: 64,
   height: 32
@@ -12,7 +16,7 @@ window.block = {
 
 
 
-window.objects = (function() {
+this.objects = (function() {
   var objects = {};
   objects["g"] = {
   	"img": {
@@ -40,7 +44,7 @@ window.objects = (function() {
 
 
 
-window.units = (function() {
+this.units = (function() {
   var units = {};
   
   
@@ -173,7 +177,7 @@ window.units = (function() {
 
 
 
-window.map = (function() {
+this.map = (function() {
   var map = {};
   map.structure = [
 	["w","w","b_l","gr","gr","w","w","w","w","w","w","w","w","w","w","w","w","w","w","b_l","gr","gr","w","w","w"],
@@ -203,12 +207,18 @@ window.map = (function() {
 ];
   return map;
 })();
+  
+  
+  
+  
+  
+  
+  
+};
 
 
-
-
-
-
-
-
+window.Config = config;
 })();
+
+
+

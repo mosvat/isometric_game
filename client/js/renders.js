@@ -1,47 +1,34 @@
 ;(function() {
   
-var CLASS_RENDER = function(ctx,twoDToIso,isoTo2D,imagesArr,camera) {
-  this.renders = new (function() {
-    this.ground = function(x,y,id) {
-      var _pos = twoDToIso({
-          x: x * BLOCK_SIZE,
-          y: y * BLOCK_SIZE
+  var _calss = function(app){
+
+    this.ground = function(x,y,l) {
+
+      var _pos = app.twoDToIso({
+          x: x * l.iso.height * app.zoom,
+          y: y * l.iso.height * app.zoom
         });
-        
-      var t = window.units[id];
-      
-      ctx.drawImage(
-        imagesArr[t.img],
+
+      var id = l.map[x][y];  
+
+      var t = l.units[id];
+
+       
+      app.context.drawImage(
+        app.imagesArr[t.img],
         t.x,
         t.y,
         t.w,
         t.h,
-        _pos.x - camera.x,
-        _pos.y - camera.y,
-        BLOCK_SIZE*2,
-        BLOCK_SIZE
+        _pos.x - app.camera.x,
+        _pos.y - app.camera.y,
+        l.iso.width * app.zoom,
+        l.iso.height * app.zoom
       );
-      
-      // var a = "[";
-// for(var i = 0; i < 100; i++){
-	// a += "[";
-    // for(var j = 0; j < 100; i++){
-		// a += Math.round(Math.random()*10)
-    // }
-	// a += "],\n";
-// }
-// console.log(a)
-      
-      
-      // ctx.fillText(
-        // x + " | " + y, 
-        // _pos.x - camera.x + BLOCK_SIZE/4,
-        // _pos.y - camera.y + BLOCK_SIZE/2
-      // );  
-    };
-  })();
-  return renders;
-};  
 
-window.renders = CLASS_RENDER;
+    };
+    
+  };
+  
+  window.Renders = _calss;
 })();
