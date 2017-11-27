@@ -56,12 +56,15 @@ function Game() {
   
   this.app = app;
   
-  var sources = {
-			"img/forest.png": "img/forest.png",
-      "img/layer_2.png": "img/layer_2.png"
-  };
+  // var sources = {
+			// "img/forest.png": "img/forest.png",
+      // "img/layer_2.png": "img/layer_2.png",
+      // "img/ground.png": "img/ground.png",
+      // "img/buildings.png": "img/buildings.png",
+      // "img/building_1.png": "img/building_1.png", 
+  // };
 		
-  app.loadImages(sources,()=>{console.log("done")}); 
+  // app.loadImages(sources,()=>{console.log("done")}); 
   
   
   
