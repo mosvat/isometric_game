@@ -3,8 +3,8 @@
 var _Layer_1 = function(app) {
   
   this.iso = {
-    width: 100,
-    height: 50
+    width: 200,
+    height: 100
   };
   
   this.two = {
@@ -30,7 +30,7 @@ var _Layer_1 = function(app) {
 
  
   this.render = function() {
-    for(var i = 0; i < this.map.length; i++)
+    for(var i = this.map.length-1; i >=0; i--)
     try{
       for(var j = 0; j < this.map[i].length; j++)
         app.renders.ground(j,i,this);

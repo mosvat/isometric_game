@@ -12,20 +12,12 @@
       var id = l.map[x][y];  
 
       
-      
-
-
-      
-      
       var t = l.units[id];
       
       var cof = {
         x: (l.iso.width / t.w),
         y: (l.iso.height / t.h)
       };
-      
-      
-      var m = 2;
       
     
       if(!(t.img in app.imagesArr)){
@@ -44,10 +36,10 @@
         t.y,
         t.w,
         t.h,
-        _pos.x - (app.camera.x + (cof.x * t._x) - m) * app.zoom,
-        _pos.y - (app.camera.y + (cof.y * t._y) - m) * app.zoom,
-        (cof.x *t.w  + m) * app.zoom,
-        (cof.x *t.h + m) * app.zoom 
+        _pos.x - (app.camera.x - t._x) * app.zoom,
+        _pos.y - (app.camera.y - t._y) * app.zoom,
+        (cof.x + t._w) * app.zoom,
+        (cof.x + t._h) * app.zoom 
       );
       
      // app.context.fillText(

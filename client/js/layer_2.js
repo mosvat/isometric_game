@@ -3,8 +3,8 @@
 var _Layer_2 = function(app) {
   
   this.iso = {
-    width: 64,
-    height: 32
+    width: 50,
+    height: 25
   };
   
   this.two = {
@@ -22,9 +22,9 @@ var _Layer_2 = function(app) {
     w: 0,
 		h: 0,
     _x: 0,
-    _y: 0,
-    _w: 0,
-    _h: 0
+    _y: -12,
+    _w: 50,
+    _h: 25
   };
   
   units["r"] = {
@@ -48,8 +48,6 @@ var _Layer_2 = function(app) {
 		y: 12,
     w: 280,
 		h: 250,
-    _x: 6,
-    _y: 300
   };
   
    units["b_2"] = {
@@ -58,13 +56,10 @@ var _Layer_2 = function(app) {
 		y: 0,
     w: 198,
 		h: 200,
-    
     _x: 0,
-    _y: 150,
-    _w: 100,
-    _h: 200
-    
-    
+    _y: -25,
+    _w: 50,
+    _h: 50
   };
   
   

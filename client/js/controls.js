@@ -48,7 +48,7 @@
   function onWheel(e) {
     e = e || window.event;
     var delta = e.deltaY || e.detail || e.wheelDelta;
-    app.zoom += (delta/100);
+    app.zoom += (delta/1000);
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
   } 
     

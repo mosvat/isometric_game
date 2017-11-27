@@ -89,17 +89,17 @@ function Game() {
     });
     
     var _pos = app.isoTo2D({
-      x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[0].two.width/(app.layers[0].iso.width/2))      ),
-      y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[0].two.height/(app.layers[0].iso.height))         )
+      x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[0].two.width/(app.layers[0].two.width))      ),
+      y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[0].iso.height/(app.layers[0].iso.height))      )
     }); 
     app.context.fillText(_pos.x + " | " + _pos.y, 5 , 35 );
     
     
-    var _pos = app.isoTo2D({
-      x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[1].two.width/(app.layers[1].iso.width/2))      ),
-      y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[1].two.height/(app.layers[1].iso.height))         )
-    }); 
-    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 55 );
+    // var _pos = app.isoTo2D({
+      // x: Math.round(           (app.mouse.x + app.camera.x)*(app.layers[1].two.width/(app.layers[1].iso.width/2))      ),
+      // y: Math.round(           (app.mouse.y + app.camera.y)*(app.layers[1].two.height/(app.layers[1].iso.height))         )
+    // }); 
+    // app.context.fillText(_pos.x + " | " + _pos.y, 5 , 55 );
     
     
     
