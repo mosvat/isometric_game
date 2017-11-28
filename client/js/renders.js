@@ -9,24 +9,17 @@
           y: y * l.iso.height * app.zoom
         });
 
-      var id = l.map[x][y];  
-
-      
+      var id = l.map[x][y];
       var t = l.units[id];
       
-      var cof = {
-        x: (l.iso.width / t.w),
-        y: (l.iso.height / t.h)
-      };
-      
-    
       if(!(t.img in app.imagesArr)){
         var o = {};
         o[t.img] = t.img;
-        
         app.loadImages(
           o,
-          ()=>{console.log("done: "+t.img)}
+          ()=>{
+            console.log("done: "+t.img)
+          }
         ); 
       }
       
@@ -36,16 +29,18 @@
         t.y,
         t.w,
         t.h,
-        _pos.x - (app.camera.x - t._x) * app.zoom,
-        _pos.y - (app.camera.y - t._y) * app.zoom,
-        (cof.x + t._w) * app.zoom,
-        (cof.x + t._h) * app.zoom 
+        _pos.x - (app.camera.x - (l.iso.width * t._x)) * app.zoom,
+        _pos.y - (app.camera.y - (l.iso.height * t._y)) * app.zoom,
+        l.iso.width * t._w * app.zoom,
+        l.iso.height * t._h * app.zoom 
       );
+      
+  
       
      // app.context.fillText(
         // x + " | " + y, 
-        // _pos.x - (app.camera.x + t.w) * app.zoom,
-        // _pos.y - (app.camera.y + t.h) * app.zoom,
+       // _pos.x - (app.camera.x - (l.iso.width * t._x)) * app.zoom,
+       // _pos.y - (app.camera.y - (l.iso.height * t._y)) * app.zoom
       // );  
       
     };

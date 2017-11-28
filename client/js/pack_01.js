@@ -24,7 +24,18 @@ var _pack = function() {
     return {x: a, y: b};
   };
 
-  
+  this.getPos = function(l){
+    app = this;
+    var _pos = app.isoTo2D({
+      x: Math.round( ( app.mouse.x + app.camera.x ) / app.zoom ),
+      y: Math.round( ( app.mouse.y + app.camera.y ) / app.zoom )
+    }); 
+    
+    _pos.x = ( _pos.x / ( l.iso.width / 2 ) ) * l.two.width;
+    _pos.y = ( _pos.y /   l.iso.height ) * l.two.height;
+    
+    return _pos;
+  };  
   
   
 };

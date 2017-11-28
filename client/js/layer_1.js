@@ -30,13 +30,15 @@ var _Layer_1 = function(app) {
 
  
   this.render = function() {
-    for(var i = this.map.length-1; i >=0; i--)
-    try{
-      for(var j = 0; j < this.map[i].length; j++)
-        app.renders.ground(j,i,this);
-    }catch(err){
-    };
-  }
+    var arr = [];
+    for(var i in this.map)
+      for(var j in this.map[i])
+        arr.push([i,j]);
+    arr.forEach((e)=>{
+      app.renders.ground(e[0],e[1],this);
+    });  
+  };
+  
   
 };
 

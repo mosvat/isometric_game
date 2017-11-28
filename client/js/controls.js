@@ -22,9 +22,31 @@
       window.attachEvent("onmousewheel", onWheel);
   };
 
-  window.addEventListener("keydown",keydown);
-  window.addEventListener("resize",resize); 
-  window.addEventListener("mousemove",mousemove);
+  window.addEventListener("keydown", keydown);
+  window.addEventListener("resize", resize); 
+  window.addEventListener("mousemove", mousemove);
+  window.addEventListener("mousedown", mousedown);
+  
+  
+  function mousedown(e) {
+    var _pos = app.isoTo2D({
+      x: app.mouse.x + app.camera.x,
+      y: app.mouse.y + app.camera.y 
+    }); 
+    
+    var BLOCK_SIZE = app.layers[1].iso;
+    
+    _pos.x = Math.floor( _pos.x / (BLOCK_SIZE.width/2) );
+    _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
+    
+    
+    app.layers[1].map[_pos.y] = app.layers[1].map[_pos.y] || [];
+    app.layers[1].map[_pos.y][_pos.x] = "b_2";
+    
+    
+    
+    console.log(_pos);
+  };
   
   function mousemove(e) {
     app.mouse.x = e.offsetX == undefined ? e.layerX : e.offsetX;

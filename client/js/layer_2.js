@@ -3,13 +3,13 @@
 var _Layer_2 = function(app) {
   
   this.iso = {
-    width: 50,
-    height: 25
+    width: 40,
+    height: 20
   };
   
   this.two = {
-    width: 100,
-    height: 100
+    width: 20,
+    height: 20
   };
   
   this.units = (function() {
@@ -22,9 +22,9 @@ var _Layer_2 = function(app) {
     w: 0,
 		h: 0,
     _x: 0,
-    _y: -12,
-    _w: 50,
-    _h: 25
+    _y: -0.5,
+    _w: 1,
+    _h: 1
   };
   
   units["r"] = {
@@ -56,10 +56,8 @@ var _Layer_2 = function(app) {
 		y: 0,
     w: 198,
 		h: 200,
-    _x: 0,
-    _y: -25,
-    _w: 50,
-    _h: 50
+    _y: -1.5,
+    _h: 2
   };
   
   
@@ -69,28 +67,23 @@ var _Layer_2 = function(app) {
 })();
 
 
-this.map = [
-    ["r","y","r","y","r","y","r","y","r","y"],
-    ["y","r","y","r","y","r","y","r","y","r"],
-    ["r","y","r","y","r","y","r","y","r","y"],
-    ["y","r","y","r","y","b_1","y","r","y","r"],
-    ["r","y","r","y","r","y","r","y","r","y"],
-    ["y","r","y","r","y","r","y","r","y","r"],
-    ["r","y","r","y","r","y","r","y","r","y"],
-    ["y","r","y","r","b_2","r","y","r","y","r"],
-    ["r","y","r","y","r","y","r","y","r","y"],
-    ["y","r","y","r","y","r","y","r","y","r"],
-  ];
+  this.map = [];
 
+  this.map[33] = [];
+  this.map[33][12] = "b_2";
+
+  this.map[34] = [];
+  this.map[34][11] = "b_2";
  
   this.render = function() {
-    for(var i = this.map.length-1; i >=0; i--)
-    try{
-      for(var j = 0; j < this.map[i].length; j++)
-        app.renders.ground(j,i,this);
-    }catch(err){
-    };
-  }
+    var arr = [];
+    for(var i in this.map)
+      for(var j in this.map[i])
+        arr.unshift([i,j]);
+    arr.forEach((e)=>{
+      app.renders.ground(e[0],e[1],this);
+    });  
+  };
   
 };
 

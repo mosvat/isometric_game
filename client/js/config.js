@@ -44,10 +44,9 @@ this.grounds = (function() {
     w: 0,
 		h: 0,
     _x: 0,
-    _y: -50,
-    _w: 200,
-    _h: 100
-    
+    _y: -0.5,
+    _w: 1,
+    _h: 1
   };
  
   a["g_1"] = {
@@ -63,7 +62,7 @@ this.grounds = (function() {
     x: 400,
 		y: 0,
     w: 200,
-		h: 100,
+		h: 100
   }; 
  
   for(var key in a)
