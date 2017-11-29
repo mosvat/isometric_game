@@ -10,37 +10,117 @@ var config = function() {
 this.grounds = (function() {
   var a = {};
   var _default = {
-    img: "img/ground.png",
-    x: 0,
-		y: 0,
-    w: 0,
-		h: 0,
+    img: "img/forest.png",
+    x: 384,
+		y: 33,
+    
+    w: 64,
+    h: 32,
+    
     iso: {
-      width: 200,
-      height: 100
+      width: 128,
+      height: 64
     },
-    _x: -100,
+    
+    _x: -64,
     _y: 0,
-    _w: 200,
-    _h: 100
+    _w: 128,
+    _h: 64
   };
  
-  a["g_1"] = {
-    img: "img/ground.png",
-    x: 200,
-		y: 0,
-    w: 200,
-		h: 100
+  
+  
+  a["w"] = {
+    img: "img/forest.png",
+    x: 512,
+		y: 545
   };
- 
-  a["g_2"] = {
-    img: "img/ground.png",
-    x: 400,
-		y: 0,
-    w: 200,
-		h: 100
+  
+  a["rif"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 673
+  };
+
+  a["gr"] = {
+    img: "img/forest.png",
+    x: 384,
+		y: 33
+  };
+  
+ a["b_r"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 545
+  };
+  
+  a["b_t"] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 545
+  };  
+
+  a["b_d"] = {
+    img: "img/forest.png",
+    x: 256,
+		y: 545
+  };  
+  
+   a["b_l"] = {
+    img: "img/forest.png",
+    x: 384,
+		y: 545
   }; 
- 
+
+  a["b_t_r"] = {
+    img: "img/forest.png",
+    x: 256,
+		y: 545
+  };
+  //========================
+  a["b_d_l"] = {
+    img: "img/forest.png",
+    x: 545,
+		y: 640
+  };
+  
+  a["b_r_d"] = {
+    img: "img/forest.png",
+    x: 768,
+		y: 545
+  };
+  
+  a["b_t_l"] = {
+    img: "img/forest.png",
+    x: 896,
+		y: 545
+  };
+  //========================
+  a["r"] = {
+    img: "img/forest.png",
+    x: 0,
+		y: 0
+  }; 
+  
+  a["g"] = {
+    img: "img/forest.png",
+    x: 64,
+		y: 0
+  };   
+
+  a["b"] = {
+    img: "img/forest.png",
+    x: 128,
+		y: 0
+  }; 
+  
+  
+  
+  
+  
+  
+  
+  
   for(var key in a)
     a[key].__proto__ = _default;
  
@@ -57,8 +137,8 @@ this.buildings = (function() {
     
     
     fiz: {
-      x: 2,
-      y: 2
+      x: 1,
+      y: 1
     },
     
     img: "img/ground.png",
@@ -106,8 +186,13 @@ this.buildings = (function() {
     cx: 0,
     cy: 0,
     
-    _x: -20,
-    _y: -46,
+    fiz: {
+      x: 2,
+      y: 2
+    },
+    
+    _x: 32,
+    _y: 32,
     _w: 80,
     _h: 92
   };

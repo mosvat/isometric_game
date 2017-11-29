@@ -28,6 +28,23 @@
         h: l.iso.height / t.iso.height
       };
       
+      
+
+      if(window.show == true) {
+        window.show = !true;
+        console.log([app.imagesArr[t.img],
+        t.x,
+        t.y,
+        t.w,
+        t.h,
+        _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom,
+        _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom,
+        coef.w * t._w * app.zoom,
+        coef.h * t._h * app.zoom ]);
+      }
+      
+      
+      
       app.context.drawImage(
         app.imagesArr[t.img],
         t.x,
@@ -42,11 +59,11 @@
       
   
       
-     // app.context.fillText(
-        // x + " | " + y, 
-       // _pos.x - (app.camera.x - (l.iso.width * t._x)) * app.zoom,
-       // _pos.y - (app.camera.y - (l.iso.height * t._y)) * app.zoom
-      // );  
+     app.context.fillText(
+        x + " | " + y, 
+        _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom,
+        _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom
+      );  
       
     };    
  

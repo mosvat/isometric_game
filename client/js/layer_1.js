@@ -3,8 +3,8 @@
 var _Layer_1 = function(app) {
   
   this.iso = {
-    width: 200,
-    height: 100
+    width: 128,
+    height: 64
   };
   
   this.two = {
@@ -16,16 +16,16 @@ var _Layer_1 = function(app) {
 
 
   this.map = [
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_2","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_2","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_2","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"],
-    ["g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1","g_1"]
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
+    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"]
   ];
 
  
@@ -39,7 +39,13 @@ var _Layer_1 = function(app) {
     });  
   };
   
-  
+ 
+    
+    
+  this.set = function(x,y,type){
+    this.map[x] = this.map[x] || [];
+      this.map[x][y] = type;
+  }
 };
 
 window.Layer_1 = _Layer_1;

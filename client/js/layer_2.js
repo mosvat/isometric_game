@@ -3,13 +3,13 @@
 var _Layer_2 = function(app) {
   
   this.iso = {
-    width: 40,
-    height: 20
+    width: 32,
+    height: 16
   };
   
   this.two = {
-    width: 20,
-    height: 20
+    width: 25,
+    height: 25
   };
   
   this.units = app.config["buildings"];

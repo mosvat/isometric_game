@@ -24,26 +24,32 @@
 
   window.addEventListener("keydown", keydown);
   window.addEventListener("resize", resize); 
-  window.addEventListener("mousemove", mousemove);
-  window.addEventListener("mousedown", mousedown);
-  window.addEventListener("mouseup", mouseup);
+  app.canvas.addEventListener("mousemove", mousemove);
+  app.canvas.addEventListener("mousedown", mousedown);
+  app.canvas.addEventListener("mouseup", mouseup);
   
   
   var k = 0;
   
   function setB() {
-    var _pos = app.isoTo2D({
-      x: app.mouse.x + app.camera.x,
-      y: app.mouse.y + app.camera.y 
-    }); 
+    if(app.editor.layer != undefined && app.editor.block != undefined) {
+      
+      var _pos = app.isoTo2D({
+        x: app.mouse.x + app.camera.x,
+        y: app.mouse.y + app.camera.y 
+      }); 
+      
+      var BLOCK_SIZE = app.editor.layer.iso;
+      
+      _pos.x = Math.floor( _pos.x / (BLOCK_SIZE.width/2) );
+      _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
     
-    var BLOCK_SIZE = app.layers[1].iso;
     
-    _pos.x = Math.floor( _pos.x / (BLOCK_SIZE.width/2) );
-    _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
+      app.editor.layer.set(_pos.y,_pos.x,        app.editor.block      );
+      window.show = true;
+    }
     
-    
-    app.layers[1].set(_pos.y,_pos.x,        ["h_1","b_2"][1]      );
+      
   }
   
   
@@ -74,8 +80,8 @@
   };
     
   function keydown(e) {
-    var k = e.keyCode;
     if(LMB_press) setB();
+    var k = e.keyCode;
     if(k==87 || k==38) app.camera.y -= 32;
     if(k==83 || k==40) app.camera.y += 32;
     if(k==68 || k==39) app.camera.x += 64;

@@ -17,6 +17,76 @@ var _pack = function() {
       this.imagesArr[src].src = sources[src];
     };
   };  
+  
+  
+  
+  var editor = {
+    "layer": undefined,
+    "block": undefined,
+    "enabled": enabled,
+    "setLayer": setLayer,
+    "setBlock": setBlock
+  };
+  
+  
+  function enabled(app){
+    var a = document.getElementById("layers");
+    a.innerHTML = "";
+    var b = document.getElementById("blocks");
+    b.innerHTML = "";
+
+    
+    for(var key in app.layers){
+      var i = document.createElement('div');
+   
+      i.innerHTML = "Layer "+key;
+      i.l = app.layers[key];
+      i.addEventListener("click", setLayer);
+      
+      
+      a.appendChild(i);
+    }
+  }
+  
+  
+  function setLayer(){
+   
+    var l = this.l;
+    editor.layer = l;
+    
+    var b = document.getElementById("blocks");
+    b.innerHTML = "";
+    for(var key in l.units){
+      var o = l.units[key];
+
+    
+      var i = document.createElement('div');
+      
+      i.style.width = o.w + "px";
+      i.style.height = o.h + "px";
+      
+      i.style.background = "white url" + "('" +o.img + "') -"+ o.x + "px -" + o.y +"px";
+      
+      i.b = key;
+      
+      i.addEventListener("click", setBlock);
+      b.appendChild(i);    
+    }
+  };
+  
+  function setBlock(){
+    editor.block = this.b;
+  };
+  
+  
+  this.editor = editor;
+  
+  
+  
+  
+  
+  
+  
 };
 
 if(!("func_packs" in window)) window.func_packs = [];
