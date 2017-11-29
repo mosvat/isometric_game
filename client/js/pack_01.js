@@ -3,15 +3,15 @@
 var _pack = function() {
   this.twoDToIso = function(p){
     var point = {};
-    point.x = (p.x + p.y);
-    point.y = (p.x - p.y) / 2; 
+    point.x = -(p.x - p.y);
+    point.y = (p.x + p.y) / 2; 
     return point;
   };
   
   this.isoTo2D = function(p){
     var point = {};
-    point.x = p.x/2 - p.y;
-    point.y = p.x/2 + p.y;
+    point.x = (p.x/2 + p.y);
+    point.y = -p.x/2 + p.y;
     return point;
   };
  

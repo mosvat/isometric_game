@@ -26,9 +26,12 @@
   window.addEventListener("resize", resize); 
   window.addEventListener("mousemove", mousemove);
   window.addEventListener("mousedown", mousedown);
+  window.addEventListener("mouseup", mouseup);
   
   
-  function mousedown(e) {
+  var k = 0;
+  
+  function setB() {
     var _pos = app.isoTo2D({
       x: app.mouse.x + app.camera.x,
       y: app.mouse.y + app.camera.y 
@@ -40,17 +43,28 @@
     _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
     
     
-    app.layers[1].map[_pos.y] = app.layers[1].map[_pos.y] || [];
-    app.layers[1].map[_pos.y][_pos.x] = "b_2";
-    
-    
-    
-    console.log(_pos);
+    app.layers[1].set(_pos.y,_pos.x,        ["h_1","b_2"][+(k = !k)]      );
+  }
+  
+  
+  
+  var LMB_press = false;
+  
+  function mousedown(e) {
+    setB();
+    LMB_press = true;
   };
+  
+  
+  function mouseup(e) {
+    LMB_press = false;
+  };
+  
   
   function mousemove(e) {
     app.mouse.x = e.offsetX == undefined ? e.layerX : e.offsetX;
 		app.mouse.y = e.offsetY == undefined ? e.layerY : e.offsetY; 
+    if(LMB_press) setB();
   };	
   
   
@@ -61,6 +75,7 @@
     
   function keydown(e) {
     var k = e.keyCode;
+    if(LMB_press) setB();
     if(k==87 || k==38) app.camera.y -= 32;
     if(k==83 || k==40) app.camera.y += 32;
     if(k==68 || k==39) app.camera.x += 64;
