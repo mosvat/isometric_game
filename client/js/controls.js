@@ -43,7 +43,7 @@
     _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
     
     
-    app.layers[1].set(_pos.y,_pos.x,        ["h_1","b_2"][+(k = !k)]      );
+    app.layers[1].set(_pos.y,_pos.x,        ["h_1","b_2"][1]      );
   }
   
   

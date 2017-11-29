@@ -50,7 +50,6 @@
       
     };    
  
-//=======================================================================
     this.building = function(x,y,l) {
       var id = l.map[x][y];
       var obj = l.list[id];
@@ -80,14 +79,16 @@
         h: l.iso.height / t.iso.height
       };
       
+
+      
       app.context.drawImage(
         app.imagesArr[t.img],
         t.x,
         t.y,
         t.w,
         t.h,
-        _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom,
-        _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom,
+        _pos.x - (app.camera.x + (coef.w * t._x)) * app.zoom,
+        _pos.y - (app.camera.y + (coef.h * t._y)) * app.zoom,
         coef.w * t._w * app.zoom,
         coef.h * t._h * app.zoom 
       );

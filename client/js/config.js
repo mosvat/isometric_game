@@ -66,6 +66,8 @@ this.buildings = (function() {
 		y: 0,
     w: 0,
 		h: 0,
+    cx: 0,
+    cy: 0,
     
     iso: {
       width: 40,
@@ -100,8 +102,12 @@ this.buildings = (function() {
 		y: 13,
     w: 88,
 		h: 102,
-    _x: -50,
-    _y: -67,
+    
+    cx: 0,
+    cy: 0,
+    
+    _x: -20,
+    _y: -46,
     _w: 80,
     _h: 92
   };
@@ -112,12 +118,17 @@ this.buildings = (function() {
       y: 1
     },
     img: "img/cub.png",
+    
     x: 0,
 		y: 0,
-    w: 198,
+    w: 200,
 		h: 200,
-    _x: -20,
-    _y: -20,
+    
+    cx: 0,
+    cy: 150,
+    
+    _x: 20,
+    _y: 20,
     _w: 40,
     _h: 40
   };
