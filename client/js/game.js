@@ -94,12 +94,29 @@ function Game() {
     app.context.font = "20px Arial";
     app.context.fillText(_pos.x + " | " + _pos.y, 5 , 25 );
     
-    _pos = app.getPos(app.layers[1]);
-    app.context.font = "20px Arial";
-    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 45 );
-    
+    // _pos = app.getPos(app.layers[1]);
 
     
+
+    // if(app.editor.layer != undefined && app.editor.block != undefined) {
+      
+      // var l = app.editor.layer;
+      // var t = l.units[app.editor.block];
+      
+      // var _pos = app.getPos(l);
+      // _pos = {
+        // x: Math.ceil(_pos.x / l.two.height)-1,
+        // y: Math.ceil(_pos.y / l.two.width)-1
+      // };
+      
+      
+      // app.context.save();
+			// app.context.globalAlpha = 0.5;
+      
+      // app.renders[l.renders](_pos.y,_pos.x,l,t);
+      
+      // app.context.restore();
+    // }
     
     
     

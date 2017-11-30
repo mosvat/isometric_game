@@ -34,19 +34,16 @@
   function setB() {
     if(app.editor.layer != undefined && app.editor.block != undefined) {
       
-      var _pos = app.isoTo2D({
-        x: app.mouse.x + app.camera.x,
-        y: app.mouse.y + app.camera.y 
-      }); 
+      var _pos = app.getPos(app.layers[0]);
       
-      var BLOCK_SIZE = app.editor.layer.iso;
+      var b = app.editor.layer.two;
       
-      _pos.x = Math.floor( _pos.x / (BLOCK_SIZE.width/2) );
-      _pos.y = Math.floor( _pos.y / BLOCK_SIZE.height );
+      _pos.x = Math.floor( _pos.x / b.width );
+      _pos.y = Math.floor( _pos.y / b.height );
     
     
       app.editor.layer.set(_pos.y,_pos.x,        app.editor.block      );
-      window.show = true;
+      window.show = app.editor.block;
     }
     
       
@@ -91,7 +88,7 @@
   function onWheel(e) {
     e = e || window.event;
     var delta = e.deltaY || e.detail || e.wheelDelta;
-    app.zoom += (delta/1000);
+    app.zoom += (delta/100);
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
   } 
     

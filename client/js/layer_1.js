@@ -13,7 +13,7 @@ var _Layer_1 = function(app) {
   };
   
   this.units = app.config["grounds"];
-
+  this.renders = "ground";
 
   this.map = [
     ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
@@ -35,7 +35,7 @@ var _Layer_1 = function(app) {
       for(var j in this.map[i])
         arr.push([i,j]);
     arr.forEach((e)=>{
-      app.renders.ground(e[0],e[1],this);
+      app.renders[this.renders](e[0],e[1],this);
     });  
   };
   

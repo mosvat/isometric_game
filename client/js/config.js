@@ -29,18 +29,7 @@ this.grounds = (function() {
   };
  
   
-  
-  a["w"] = {
-    img: "img/forest.png",
-    x: 512,
-		y: 545
-  };
-  
-  a["rif"] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 673
-  };
+
 
   a["gr"] = {
     img: "img/forest.png",
@@ -48,81 +37,115 @@ this.grounds = (function() {
 		y: 33
   };
   
- a["b_r"] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 545
-  };
-  
-  a["b_t"] = {
-    img: "img/forest.png",
-    x: 128,
-		y: 545
-  };  
 
-  a["b_d"] = {
-    img: "img/forest.png",
-    x: 256,
-		y: 545
-  };  
+       a["g0"] = {
+        img: "img/forest.png",
+        x: 0,
+        y: 545
+      };
+    
+      a["g1"] = {
+        img: "img/forest.png",
+        x: 64,
+        y: 545
+      };
+    
+      a["g2"] = {
+        img: "img/forest.png",
+        x: 128,
+        y: 545
+      };
+    
+      a["g3"] = {
+        img: "img/forest.png",
+        x: 192,
+        y: 545
+      };
+    
+      a["g4"] = {
+        img: "img/forest.png",
+        x: 256,
+        y: 545
+      };
+    
+      a["g5"] = {
+        img: "img/forest.png",
+        x: 320,
+        y: 545
+      };
+    
+      a["g6"] = {
+        img: "img/forest.png",
+        x: 384,
+        y: 545
+      };
+    
+      a["g7"] = {
+        img: "img/forest.png",
+        x: 448,
+        y: 545
+      }; 
   
-   a["b_l"] = {
-    img: "img/forest.png",
-    x: 384,
-		y: 545
-  }; 
-
-  a["b_t_r"] = {
-    img: "img/forest.png",
-    x: 256,
-		y: 545
-  };
-  //========================
-  a["b_d_l"] = {
-    img: "img/forest.png",
-    x: 545,
-		y: 640
-  };
-  
-  a["b_r_d"] = {
-    img: "img/forest.png",
-    x: 768,
-		y: 545
-  };
-  
-  a["b_t_l"] = {
-    img: "img/forest.png",
-    x: 896,
-		y: 545
-  };
-  //========================
-  a["r"] = {
-    img: "img/forest.png",
-    x: 0,
-		y: 0
-  }; 
-  
-  a["g"] = {
-    img: "img/forest.png",
-    x: 64,
-		y: 0
-  };   
-
-  a["b"] = {
-    img: "img/forest.png",
-    x: 128,
-		y: 0
-  }; 
-  
-  
-  
-  
+   a["g8"] = {
+        img: "img/forest.png",
+        x: 512,
+        y: 545
+      };
+        a["g9"] = {
+        img: "img/forest.png",
+        x: 0,
+        y: 97
+      };
+    
+      a["g10"] = {
+        img: "img/forest.png",
+        x: 64,
+        y: 97
+      };
+    
+      a["g11"] = {
+        img: "img/forest.png",
+        x: 128,
+        y: 97
+      };
+    
+      a["g12"] = {
+        img: "img/forest.png",
+        x: 192,
+        y: 97
+      };
+    
+      a["g13"] = {
+        img: "img/forest.png",
+        x: 256,
+        y: 97
+      };
+    
+      a["g14"] = {
+        img: "img/forest.png",
+        x: 320,
+        y: 97
+      };
+    
+      a["g15"] = {
+        img: "img/forest.png",
+        x: 384,
+        y: 97
+      };
+    
+      a["g16"] = {
+        img: "img/forest.png",
+        x: 448,
+        y: 97
+      };
   
   
   
   
   for(var key in a)
     a[key].__proto__ = _default;
+ 
+  window.j = a["b_t_l"];
  
   return a;
 })();
@@ -188,7 +211,7 @@ this.buildings = (function() {
     
     fiz: {
       x: 2,
-      y: 2
+      y: 3
     },
     
     _x: 32,
@@ -218,7 +241,39 @@ this.buildings = (function() {
     _h: 40
   };
   
-  
+   units["b_3"] = {
+    fiz: {
+      x: 4,
+      y: 5
+    },
+    img: "img/building_2.png",
+    
+    w: 241,
+		h: 189,
+   
+    _x: 50,
+    _y: 50,
+    _w: 128,
+    _h: 128
+  };
+ 
+  units["b_4"] = {
+    fiz: {
+      x: 5,
+      y: 5
+    },
+    img: "img/building_3.png",
+    
+    w: 180,
+		h: 270,
+   
+    _x: 70,
+    _y: 120,
+    _w: 128,
+    _h: 200
+  };
+
+ 
   for(var key in units){
     var u = units[key];
     units[key].__proto__ = _default;

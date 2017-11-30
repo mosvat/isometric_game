@@ -13,7 +13,8 @@ var _Layer_2 = function(app) {
   };
   
   this.units = app.config["buildings"];
-
+  this.renders = "building";
+  
   var map = [];
     this.map = map;
   
@@ -23,9 +24,14 @@ var _Layer_2 = function(app) {
   
   
   this.render = function() {   
+    var arr = [];
     for(var i in map)
-        for(var j in map[i]) 
-          app.renders.building(i,j,this);
+        for(var j in map[i]) {
+          if(arr.indexOf(map[i][j]) === -1) {
+            arr.push(map[i][j]);
+            app.renders[this.renders](i,j,this);
+          }
+        }
   };
   
   
@@ -61,6 +67,7 @@ var _Layer_2 = function(app) {
     for(var i = 0; i < obj.fiz.x; i++)
       for(var j = 0; j < obj.fiz.y; j++){
         delete map[obj.pos.x+i][obj.pos.y+j];
+        //if(Object.keys(map[obj.pos.x+i]).length == 0) {delete map[obj.pos.x+i]};
       };
       
     delete list[obj.id];

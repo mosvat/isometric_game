@@ -50,6 +50,7 @@ var _pack = function() {
   
   
   function setLayer(){
+    editor.block = undefined;
    
     var l = this.l;
     editor.layer = l;
@@ -60,17 +61,27 @@ var _pack = function() {
       var o = l.units[key];
 
     
-      var i = document.createElement('div');
+      var j = document.createElement('div');
+      j.style.width = o._w + "px";
+      j.style.height = o._h + "px";
+      j.b = key;      
+      j.addEventListener("click", setBlock);
+      b.appendChild(j);  
       
+      
+      var i = document.createElement('div');
       i.style.width = o.w + "px";
       i.style.height = o.h + "px";
-      
+      i.style.imageRendering = "pixelated";
       i.style.background = "white url" + "('" +o.img + "') -"+ o.x + "px -" + o.y +"px";
+      i.style.zoom = "" + o._w / o.w;
+      j.appendChild(i);  
       
-      i.b = key;
       
-      i.addEventListener("click", setBlock);
-      b.appendChild(i);    
+      
+      
+      
+        
     }
   };
   
