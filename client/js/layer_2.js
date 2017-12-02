@@ -24,12 +24,30 @@ var list = [];
   
   
 function render() {
+  var arr = [];
   for(var i in map)
       for(var j in map[i]){
-          var id = map[i][j];
-          var obj = list[id];
-          print(obj,this);
+          var obj = list[ map[i][j] ];
+   
+          var ind = arr.indexOf(obj);
+          if(ind !== -1) arr.splice(ind, 1);
+            
+          arr.push(obj);
       }
+  var s = this;    
+  arr.forEach(function(obj){
+    print(obj,s);
+  });    
+        
+      
+      
+      
+// for(var i in map)
+      // for(var j in map[i]){
+          // var id = map[i][j];
+          // var obj = list[id];
+          // print(obj,this);
+      // }      
 };
   
   

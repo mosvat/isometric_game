@@ -52,7 +52,7 @@ function c() {
   window.setTimeout(c,100);
 }  
   
-c(); 
+// c(); 
   
   
 function render() {
