@@ -51,7 +51,8 @@ function Game() {
   app.controls = new Controls(app);  
   app.layers = [
     new Layer_1(app),
-    new Layer_2(app)
+    new Layer_2(app),
+    new Layer_3(app)
   ];
   
   this.app = app;

@@ -158,7 +158,6 @@ this.buildings = (function() {
       y: 0
     },
     
-    
     fiz: {
       x: 1,
       y: 1
@@ -183,44 +182,7 @@ this.buildings = (function() {
     _h: 20
   };
   
-  units["r"] = {
-    img: "img/layer_2.png",
-    x: 0,
-		y: 0,
-    w: 256,
-		h: 128
-  };
-  
-  units["y"] = {
-    img: "img/layer_2.png",
-    x: 256,
-		y: 0,
-    w: 256,
-		h: 128
-  };
-  
-  units["h_1"] = {
-    img: "img/houses.png",
-    x: 252,
-		y: 13,
-    w: 88,
-		h: 102,
-    
-    cx: 0,
-    cy: 0,
-    
-    fiz: {
-      x: 2,
-      y: 3
-    },
-    
-    _x: 32,
-    _y: 32,
-    _w: 80,
-    _h: 92
-  };
-  
-   units["b_2"] = {
+   units["cub"] = {
     fiz: {
       x: 1,
       y: 1
@@ -241,7 +203,7 @@ this.buildings = (function() {
     _h: 40
   };
   
-   units["b_3"] = {
+   units["b_2"] = {
     fiz: {
       x: 4,
       y: 5
@@ -257,7 +219,7 @@ this.buildings = (function() {
     _h: 128
   };
  
-  units["b_4"] = {
+  units["b_3"] = {
     fiz: {
       x: 5,
       y: 5
@@ -273,7 +235,7 @@ this.buildings = (function() {
     _h: 200
   };
 
-    units["b_5"] = {
+    units["b_1"] = {
     fiz: {
       x: 5,
       y: 5
