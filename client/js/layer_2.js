@@ -2,18 +2,26 @@
 
 var _Layer_2 = function(app) {
   
-  this.iso = {
+  var iso = {
     width: 32,
     height: 16
   };
+  this.iso = iso;
   
-  this.two = {
+  
+  var two = {
     width: 25,
     height: 25
   };
   
+  this.two = two;
+  
   this.units = app.config["buildings"];
-  this.renders = "building";
+  this.render_name = "building";
+  
+  
+  var print = app.renders[this.render_name];
+  
   
   var map = [];
     this.map = map;
@@ -23,15 +31,30 @@ var _Layer_2 = function(app) {
   
   
   
-  this.render = function() {   
-    var arr = [];
-    for(var i in map)
-        for(var j in map[i]) {
-          if(arr.indexOf(map[i][j]) === -1) {
-            arr.push(map[i][j]);
-            app.renders[this.renders](i,j,this);
-          }
-        }
+  this.render = function() {
+    
+    // var arr = [];
+    // for(var i in map)
+      // for(var j in map[i]){
+        // var io = arr.indexOf(map[i][j]);
+        // if(io === -1) {
+          // arr.push(map[i][j]);
+        // }else{
+          // arr[io] = map[i][j];
+        // }
+      // }
+    // arr.forEach((e)=>{
+      // app.renders[this.renders](e[0],e[1],this);
+    // });  
+
+  for(var i in map)
+      for(var j in map[i]){
+          var id = map[i][j];
+          var obj = list[id];
+          print(obj,this);
+      }
+  
+
   };
   
   

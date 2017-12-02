@@ -26,16 +26,32 @@ var _pack = function() {
 
   this.getPos = function(l){
     app = this;
+    var _pos = this.getBlock(l)
+    
+    _pos.x *= l.two.width ;
+    _pos.y *= l.two.height;
+    
+    return _pos;
+  };  
+  
+  this.getBlock = function(l){
+    app = this;
     var _pos = app.isoTo2D({
       x: Math.round( ( app.mouse.x/app.zoom + app.camera.x )  ),
       y: Math.round( ( app.mouse.y/app.zoom + app.camera.y )  )
     }); 
     
-    _pos.x = ( _pos.x / ( l.iso.width / 2 ) ) * l.two.width ;
-    _pos.y = ( _pos.y /   l.iso.height ) * l.two.height;
+    _pos.x = _pos.x / ( l.iso.width / 2 ) ;
+    _pos.y = _pos.y /   l.iso.height;
     
     return _pos;
-  };  
+  }; 
+  
+  
+  
+  
+  
+  
   
   
 };

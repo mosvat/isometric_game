@@ -273,6 +273,23 @@ this.buildings = (function() {
     _h: 200
   };
 
+    units["b_5"] = {
+    fiz: {
+      x: 5,
+      y: 5
+    },
+    img: "img/building_1.png",
+    
+    w: 250,
+		h: 190,
+   
+    _x: 85,
+    _y: 30,
+    _w: 170,
+    _h: 128
+  };
+
+  
  
   for(var key in units){
     var u = units[key];

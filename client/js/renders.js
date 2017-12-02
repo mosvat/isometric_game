@@ -67,16 +67,12 @@
       
     };    
  
-    this.building = function(x,y,l,t) {
-
-      var obj = (t != undefined) ? {x: x, y: y, __proto__: l.units[t]} : l.list[ l.map[x][y] ];
-    
-    
+    this.building = function(obj,l) {
+   
       var _pos = app.twoDToIso({
           x: obj.pos.x * l.iso.width/2 * app.zoom,
           y: obj.pos.y * l.iso.height * app.zoom
         });
-
 
       var t = obj;
       
@@ -115,42 +111,7 @@
         // x + " | " + y, 
         // _pos.x - (app.camera.x + (coef.w * t._x)) * app.zoom,
         // _pos.y - (app.camera.y + (coef.h * t._y)) * app.zoom
-      // );  
-
-
-     ctx.fillStyle="#FF0000";
-      
-      ctx.beginPath();
-      
-
-
-      ctx.moveTo(
-        _pos.x - (app.camera.x * app.zoom),
-        _pos.y - (app.camera.y * app.zoom)
-      );
-      
-
-      _pos = app.twoDToIso({
-          x: (obj.pos.x+1) * l.iso.width/2 * app.zoom,
-          y: (obj.pos.y+1) * l.iso.height * app.zoom
-      });
-      
-      ctx.lineTo(
-        _pos.x - (app.camera.x * app.zoom),
-        _pos.y - (app.camera.y * app.zoom)
-      );   
-      
-      ctx.fill();
-  
-  
-  
-  
-  
-  
-  
-      
-
-      
+      // );     
     }; 
   };
   

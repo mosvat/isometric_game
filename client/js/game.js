@@ -94,7 +94,9 @@ function Game() {
     app.context.font = "20px Arial";
     app.context.fillText(_pos.x + " | " + _pos.y, 5 , 25 );
     
-    // _pos = app.getPos(app.layers[1]);
+    var _pos = app.getBlock(app.layers[0]);
+    app.context.font = "20px Arial";
+    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 45 );
 
     
 
