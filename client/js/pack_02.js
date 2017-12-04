@@ -60,9 +60,7 @@ var _pack = function() {
     for(var key in l.units){
       var o = l.units[key];
       
-      if(typeof(o.img) == "object") {
-        o = Object.keys(o.img)[0];
-      }
+
     
       var j = document.createElement('div');
       j.style.width = o._w + "px";
@@ -71,6 +69,11 @@ var _pack = function() {
       j.addEventListener("click", setBlock);
       b.appendChild(j);  
       
+      if(typeof(o.img) != "string") {
+
+        o = o.img[(Object.keys(o.img)[0])];
+
+      }
       
       var i = document.createElement('div');
       i.style.width = o.w + "px";
