@@ -67,7 +67,7 @@
       
     };    
  
-    this.building = function(obj,l) {
+    this.building = function(obj,l,z) {
    
       var _pos = app.twoDToIso({
           x: obj.pos.x * l.iso.width/2 * app.zoom,
@@ -158,7 +158,11 @@
       ctx.stroke();
      
      
-     
+      ctx.fillText(
+       z, 
+        _pos.x,
+        _pos.y
+      ); 
      
      
      
@@ -170,7 +174,46 @@
     }; 
   
     this.units = function(obj,l) {
-   
+      
+
+      var _pos = app.twoDToIso({
+          x: obj.pos.x * app.zoom,
+          y: obj.pos.y * app.zoom
+        });
+
+      
+      var t = obj;
+      var ctx = app.context;
+      
+      var i = t.img[t.dir];
+      var img = i.img;
+      
+      if(!(img in app.imagesArr)){
+        var o = {};
+        o[img] = img;
+        app.loadImages(
+          o,
+          ()=>{
+            console.log("done: "+img)
+          }
+        ); 
+      }
+      
+      
+      
+      
+      ctx.drawImage(
+        app.imagesArr[img],
+        i.x,
+        i.y,
+        i.w,
+        i.h,
+        _pos.x - (app.camera.x + t._x) * app.zoom,
+        _pos.y - (app.camera.y + t._y) * app.zoom,
+        t._w * app.zoom,
+        t._h * app.zoom 
+      );
+      //======================
       var _pos = app.twoDToIso({
           x: obj.pos.x * app.zoom,
           y: obj.pos.y * app.zoom

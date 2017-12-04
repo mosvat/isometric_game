@@ -263,28 +263,75 @@ this.buildings = (function() {
 })();
 this.units = (function() {
   var _default = {
+    dir: 0,
+    
+    pos: {
+      x: 0,
+      y: 0
+    },
+    
+    fiz: {
+      x: 10,
+      y: 10
+    },
+    
     img: "img/ground.png",
     x: 0,
 		y: 0,
     w: 0,
 		h: 0,
+    cx: 0,
+    cy: 0,
+    
     iso: {
-      width: 200,
-      height: 100
+      width: 40,
+      height: 20
     },
-    _x: -100,
+  
+    _x: -20,
     _y: 0,
-    _w: 200,
-    _h: 100
+    _w: 40,
+    _h: 20
   };
   
   var a = {};
+  
   a["orc"] = {
-    img: "img/ground.png",
-    x: 200,
-		y: 0,
-    w: 200,
-		h: 100
+    img: {
+      "0": {
+        img: "img/unit_1.png",
+        x: 60,
+        y: 0,
+        w: 30,
+        h: 60
+      },
+      "90": {
+        img: "img/unit_1.png",
+        x: 30,
+        y: 0,
+        w: 30,
+        h: 60
+      },
+      "180": {
+        img: "img/unit_1.png",
+        x: 90,
+        y: 0,
+        w: 30,
+        h: 60
+      },
+      "270": {
+        img: "img/unit_1.png",
+        x: 0,
+        y: 0,
+        w: 30,
+        h: 60
+      }
+    },
+    
+    _x: 15,
+    _y: 50,
+    _w: 30,
+    _h: 60
   };
  
   for(var key in a)

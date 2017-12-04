@@ -59,7 +59,10 @@ var _pack = function() {
     b.innerHTML = "";
     for(var key in l.units){
       var o = l.units[key];
-
+      
+      if(typeof(o.img) == "object") {
+        o = Object.keys(o.img)[0];
+      }
     
       var j = document.createElement('div');
       j.style.width = o._w + "px";

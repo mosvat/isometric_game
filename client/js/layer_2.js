@@ -24,9 +24,11 @@ var list = [];
   
   
 function render() {
+  
   var arr = [];
   for(var i in map)
       for(var j in map[i]){
+          
           var obj = list[ map[i][j] ];
    
           var ind = arr.indexOf(obj);
@@ -35,8 +37,9 @@ function render() {
           arr.push(obj);
       }
   var s = this;    
+  var z = 0;
   arr.forEach(function(obj){
-    print(obj,s);
+    print(obj,s,++z);
   });    
         
       
