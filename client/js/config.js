@@ -307,7 +307,7 @@ this.units = (function() {
       },
       "90": {
         img: "img/unit_1.png",
-        x: 30,
+        x: 0,
         y: 0,
         w: 30,
         h: 60
@@ -321,7 +321,7 @@ this.units = (function() {
       },
       "270": {
         img: "img/unit_1.png",
-        x: 0,
+        x: 30,
         y: 0,
         w: 30,
         h: 60

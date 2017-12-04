@@ -31,7 +31,7 @@ function c() {
     var s = 2;
     var d = ((obj.dir)%360)*toRad;
     obj.pos.x += s*Math.cos(d);
-    obj.pos.y -= s*Math.sin(d);
+    obj.pos.y += s*Math.sin(d);
   });
   window.setTimeout(c,100);
 }  
