@@ -28,19 +28,19 @@ function c() {
   list.forEach(function(obj){
     
     obj.dir = Math.random() < 0.01 ? (obj.dir   + (360 + ((Math.random() < 0.5) ? 90 : -90))    )%360 : obj.dir;
-    var s = 2;
+    var s = 5;
     var d = ((obj.dir)%360)*toRad;
     obj.pos.x += s*Math.cos(d);
     obj.pos.y += s*Math.sin(d);
   });
-  window.setTimeout(c,100);
+  window.setTimeout(c,50);
 }  
   
 c(); 
 
 
 function set(x,y,unit){
-  x *= iso.width;
+  x *= iso.width/2;
   y *= iso.height;
   add(x,y,unit);
 }

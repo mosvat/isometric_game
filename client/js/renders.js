@@ -106,6 +106,7 @@
         coef.h * t._h * app.zoom 
       );
       //===============================================
+      return;
       var _pos = app.twoDToIso({
           x: obj.pos.x * l.iso.width/2 * app.zoom,
           y: obj.pos.y * l.iso.height * app.zoom

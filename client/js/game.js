@@ -75,7 +75,7 @@ function Game() {
   
   
   //====================== start
-  var fps = 30;
+  var fps = 80;
   var delay = 1000/fps;
   var printed = false;
   
