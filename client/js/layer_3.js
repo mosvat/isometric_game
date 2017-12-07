@@ -28,7 +28,7 @@ function c() {
   list.forEach(function(obj){
     
     obj.dir = Math.random() < 0.01 ? (obj.dir   + (360 + ((Math.random() < 0.5) ? 90 : -90))    )%360 : obj.dir;
-    var s = 5;
+    var s = 3;
     var d = ((obj.dir)%360)*toRad;
     obj.pos.x += s*Math.cos(d);
     obj.pos.y += s*Math.sin(d);

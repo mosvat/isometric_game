@@ -334,6 +334,45 @@ this.units = (function() {
     _h: 60
   };
  
+  a["petrovich"] = {
+    img: {
+      "0": {
+        img: "img/petrivich.png",
+        x: 0,
+        y: 0,
+        w: 100,
+        h: 200
+      },
+      "90": {
+        img: "img/petrivich.png",
+        x: 0,
+        y: 0,
+        w: 100,
+        h: 200
+      },
+      "180": {
+        img: "img/petrivich.png",
+        x: 100,
+        y: 0,
+        w: 100,
+        h: 200
+      },
+      "270": {
+        img: "img/petrivich.png",
+        x: 100,
+        y: 0,
+        w: 100,
+        h: 200
+      }
+    },
+    
+    _x: 17,
+    _y: 43,
+    _w: 30,
+    _h: 50
+  };
+ 
+ 
   for(var key in a)
     a[key].__proto__ = _default;
  

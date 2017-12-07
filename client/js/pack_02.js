@@ -70,9 +70,9 @@ var _pack = function() {
       b.appendChild(j);  
       
       if(typeof(o.img) != "string") {
-
+        var a = o;
         o = o.img[(Object.keys(o.img)[0])];
-
+        o.__proto__ = a;
       }
       
       var i = document.createElement('div');
