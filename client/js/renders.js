@@ -106,7 +106,7 @@
         coef.h * t._h * app.zoom 
       );
       //===============================================
-      return;
+      if(window.fiz != true) return;
       var _pos = app.twoDToIso({
           x: obj.pos.x * l.iso.width/2 * app.zoom,
           y: obj.pos.y * l.iso.height * app.zoom
@@ -178,8 +178,8 @@
       
 
       var _pos = app.twoDToIso({
-          x: obj.pos.x * app.zoom,
-          y: obj.pos.y * app.zoom
+          x: ((obj.pos.x / l.two.width/2) * l.iso.width) * app.zoom,
+          y: ((obj.pos.y / l.two.height) * l.iso.height) * app.zoom
         });
 
       
@@ -201,8 +201,6 @@
       }
       
       
-      
-      
       ctx.drawImage(
         app.imagesArr[img],
         i.x,
@@ -215,19 +213,20 @@
         t._h * app.zoom 
       );
       //======================
+      if(window.fiz != true) return;
       var _pos = app.twoDToIso({
-          x: obj.pos.x * app.zoom,
-          y: obj.pos.y * app.zoom
+          x: ((obj.pos.x / l.two.width/2) * l.iso.width) * app.zoom,
+          y: ((obj.pos.y / l.two.height) * l.iso.height) * app.zoom
         });
       
       var _x = app.twoDToIso({
-          x: obj.fiz.x * app.zoom,
+          x: ((obj.fiz.x / l.two.width/2) * l.iso.width) * app.zoom,
           y: 0
         });
       
       var _y = app.twoDToIso({
           x: 0,
-          y: obj.fiz.y * app.zoom
+          y: ((obj.fiz.y / l.two.height) * l.iso.height) * app.zoom
         });      
       
       _pos = {
@@ -235,8 +234,7 @@
           y: _pos.y - (app.camera.y * app.zoom)
         };
       
-      
-      ctx = app.context;
+    
       
 
       ctx.beginPath();

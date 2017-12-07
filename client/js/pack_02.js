@@ -48,7 +48,11 @@ var _pack = function() {
     }
   }
   
-  
+  function r() {
+    
+      return (Math.round(Math.random()*255));
+  }
+    
   function setLayer(){
     editor.block = undefined;
    
@@ -65,6 +69,7 @@ var _pack = function() {
       var j = document.createElement('div');
       j.style.width = o._w + "px";
       j.style.height = o._h + "px";
+      j.style.background = `rgb(${r()},${r()},${r()}) url('img/blockline.png')`;
       j.b = key;      
       j.addEventListener("click", setBlock);
       b.appendChild(j);  
@@ -79,7 +84,7 @@ var _pack = function() {
       i.style.width = o.w + "px";
       i.style.height = o.h + "px";
       i.style.imageRendering = "pixelated";
-      i.style.background = "white url" + "('" +o.img + "') -"+ o.x + "px -" + o.y +"px";
+      i.style.background = "url" + "('" +o.img + "') -"+ o.x + "px -" + o.y +"px";
       i.style.zoom = "" + o._w / o.w;
       j.appendChild(i);  
       

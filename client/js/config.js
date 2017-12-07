@@ -234,7 +234,27 @@ this.buildings = (function() {
     _w: 128,
     _h: 200
   };
-
+  
+  units["b_3v"] = {
+    fiz: {
+      x: 1,
+      y: 1
+    },
+    img: "img/building_3_v.png",
+    
+    x: 0,
+		y: 0,
+    w: 107,
+		h: 107,
+    
+    cx: 0,
+    cy: 53,
+    
+    _x: 20,
+    _y: 20,
+    _w: 40,
+    _h: 40
+  };
     units["b_1"] = {
     fiz: {
       x: 5,
@@ -251,7 +271,21 @@ this.buildings = (function() {
     _h: 128
   };
 
-  
+  units["btro50"] = {
+    fiz: {
+      x: 2,
+      y: 4
+    },
+    img: "img/btr50.png",
+    
+    w: 170,
+		h: 80,
+   
+    _x: 70,
+    _y: 10,
+    _w: 170,
+    _h: 80
+  };
  
   for(var key in units){
     var u = units[key];
@@ -271,8 +305,8 @@ this.units = (function() {
     },
     
     fiz: {
-      x: 10,
-      y: 10
+      x: 15,
+      y: 15
     },
     
     img: "img/ground.png",
@@ -373,6 +407,51 @@ this.units = (function() {
     _w: 30,
     _h: 50
   };
+ 
+   a["tank"] = {
+    fiz: {
+      x: 90,
+      y: 90
+    }, 
+    speed: 0.1,
+    img: {
+      "0": {
+        img: "img/type69_iraq.png",
+        x: 230,
+        y: 0,
+        w: 115,
+        h: 80
+      },
+      "90": {
+        img: "img/type69_iraq.png",
+        x: 0,
+        y: 0,
+        w: 115,
+        h: 80
+      },
+      "180": {
+        img: "img/type69_iraq.png",
+        x: 345,
+        y: 0,
+        w: 115,
+        h: 80
+      },
+      "270": {
+        img: "img/type69_iraq.png",
+        x: 115,
+        y: 0,
+        w: 115,
+        h: 80
+      }
+    },
+    
+    _x: 50,
+    _y: 25,
+    _w: 115,
+    _h: 80
+  };
+ 
+ 
  
  
   for(var key in a)

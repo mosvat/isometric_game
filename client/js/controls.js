@@ -22,6 +22,15 @@
       window.attachEvent("onmousewheel", onWheel);
   };
 
+  
+  
+  var e = document.getElementById("editor");
+  var b = e.getElementsByTagName("button")[0];
+  b.addEventListener("click",function(){
+    window.fiz = !window.fiz;
+  });
+  
+  
   window.addEventListener("keydown", keydown);
   window.addEventListener("resize", resize); 
   app.canvas.addEventListener("mousemove", mousemove);
