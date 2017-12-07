@@ -297,6 +297,7 @@ this.units = (function() {
   var a = {};
   
   a["orc"] = {
+    speed: 0.25,
     img: {
       "0": {
         img: "img/unit_1.png",
@@ -335,6 +336,7 @@ this.units = (function() {
   };
  
   a["petrovich"] = {
+    speed: 1,
     img: {
       "0": {
         img: "img/petrivich.png",

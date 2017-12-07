@@ -18,20 +18,60 @@ var render_name = "units";
 var print = app.renders[render_name]; 
 
 
-var list = [];
-    
+var list = [];  
 var toRad = Math.PI / 180;
 
+
+window.a = {};
+function iscrossing(u1,u2){
+  
+  if( 
+      (u1 != u2) && 
+      ((u1.pos.x + u1.fiz.x > u2.pos.x) && (u1.pos.x < u2.pos.x + u2.fiz.x )) && 
+      ((u1.pos.y + u1.fiz.y > u2.pos.y) && (u1.pos.y < u2.pos.y + u2.fiz.y))
+    ) return true
+   
+  return false;
+}
  
 
 function c() {
   list.forEach(function(obj){
-    
+    //============================================== change angle
     obj.dir = Math.random() < 0.01 ? (obj.dir   + (360 + ((Math.random() < 0.5) ? 90 : -90))    )%360 : obj.dir;
-    var s = 3;
+    
+    //============================================== [-] vector
+    for (let key in obj.vec) 
+			obj.vec[key] *= (Math.abs(obj.vec[key])<0.1) ? 0 : 0.9;
+    //============================================== [+] vector
     var d = ((obj.dir)%360)*toRad;
-    obj.pos.x += s*Math.cos(d);
-    obj.pos.y += s*Math.sin(d);
+    var s = Math.random() < 1 ? obj.speed : 0;
+    obj.vec.x += s*Math.cos(d);
+    obj.vec.y += s*Math.sin(d);
+    //============================================== set pos
+    var oldPos = {};
+        oldPos.x = obj.pos.x;
+        oldPos.y = obj.pos.y;
+        
+    var not_cross = [];
+    list.forEach(function(_obj){
+      if( !iscrossing(obj,_obj) ) not_cross.push(_obj);
+    });      
+    
+    obj.pos.x += Math.ceil(obj.vec.x);
+    obj.pos.y += Math.ceil(obj.vec.y);
+    
+    for(var i = 0; i < not_cross.length; i++){
+      _obj = not_cross[i];
+      if( iscrossing(obj,_obj) ) {
+        obj.pos.x = oldPos.x;
+        obj.pos.y = oldPos.y;
+        obj.vec.x *= -1;
+        obj.vec.y *= -1;
+        break;
+      };
+    }
+  
   });
   window.setTimeout(c,50);
 }  
@@ -46,9 +86,13 @@ function set(x,y,unit){
 }
 
 
-function add(x,y,unit,dir = 0) {
+function add(x,y,unit,dir) {
   var obj = {};
-  obj.dir = dir;
+  obj.vec = {
+    x: 0,
+    y: 0
+  };
+  obj.dir = dir || ( Math.round((Math.random()*270)/90)*90       );
   obj.pos = {
     "x": x,
     "y": y
@@ -57,10 +101,10 @@ function add(x,y,unit,dir = 0) {
   list.push(obj);
 }
 
-add(100,200,"orc",0);  
-add(100,200,"orc",90); 
-add(100,200,"orc",180);   
-add(100,200,"orc",270);   
+// add(100,200,"orc",0);  
+// add(100,200,"orc",90); 
+// add(100,200,"orc",180);   
+// add(100,200,"orc",270);   
   
 var a = this; 
 function render() {
