@@ -100,8 +100,8 @@
         t.y,
         t.w,
         t.h,
-        _pos.x - (app.camera.x + (coef.w * t._x)) * app.zoom,
-        _pos.y - (app.camera.y + (coef.h * t._y)) * app.zoom,
+        _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom,
+        _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom,
         coef.w * t._w * app.zoom,
         coef.h * t._h * app.zoom 
       );
@@ -158,7 +158,7 @@
    
       ctx.stroke();
      
-     
+     return;
       ctx.fillText(
        z, 
         _pos.x,
@@ -263,6 +263,14 @@
    
    
       ctx.stroke();
+      
+       ctx.fillText(
+       obj.dir, 
+        _pos.x,
+        _pos.y
+      ); 
+      
+      
     }; 
   
   

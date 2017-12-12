@@ -88,10 +88,10 @@
   function keydown(e) {
     if(LMB_press) setB();
     var k = e.keyCode;
-    if(k==87 || k==38) app.camera.y -= 32;
-    if(k==83 || k==40) app.camera.y += 32;
-    if(k==68 || k==39) app.camera.x += 64;
-    if(k==65 || k==37) app.camera.x -= 64;
+    if(k==87 ) app.camera.y -= 32;
+    if(k==83 ) app.camera.y += 32;
+    if(k==68 ) app.camera.x += 64;
+    if(k==65 ) app.camera.x -= 64;
   };
     
   function onWheel(e) {

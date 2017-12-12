@@ -15,18 +15,7 @@ var _Layer_1 = function(app) {
   this.units = app.config["grounds"];
   this.renders = "ground";
 
-  this.map = [
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],
-    ["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"]
-  ];
+  this.map = [["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","gr","gr","g3","g3","g3","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","gr","g5","g8","g8","g8","g7","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","g2","g8","g4","g6","g8","g8","g1","gr","gr","gr","gr","gr"],["gr","gr","gr","g2","g8","g7","g5","g8","g8","g1","gr","gr","gr","gr","gr"],["gr","gr","g16","gr","g6","g8","g8","g8","g4","gr","gr","gr","gr","gr","gr"],["gr","g15","g16","gr","gr","g0","g0","g0","gr","gr","gr","gr","gr","gr","gr"],["gr","g14","g13","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","g3","gr","gr","gr","gr","gr","g16","gr","gr","gr","gr","gr","gr"],["gr","g2","g8","g7","gr","gr","gr","gr","gr","gr","g15","g16","gr","gr","gr"],["gr","gr","g6","g8","g1","gr","gr","gr","gr","gr","g14","g13","gr","gr","gr"],["gr","gr","g2","g8","g1","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","g0","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"],["gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr","gr"]];
 
  
   this.render = function() {

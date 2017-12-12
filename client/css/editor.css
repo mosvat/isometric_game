@@ -6,7 +6,7 @@
     float: right;
     position: absolute;
     margin: 0px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgb(200,200,200);
 }
 
 #editor > button {
@@ -40,7 +40,7 @@
 
 
 #blocks {
-    height: 70%;
+    height: 30%;
     padding: 3px;
     overflow: scroll;
     border: 1px solid grey;
@@ -58,4 +58,24 @@
 #blocks > div:hover {
     border: 1px solid black;
     margin: 0px;
+}
+
+
+#unit {
+    height: 40%;
+    overflow: scroll;
+}
+
+#unit ul{
+    padding: 3px;
+    padding-left: 20px;
+    border: 1px solid grey;
+}
+
+
+#unit input{
+    height: 20px;
+    position: relative;
+
+
 }

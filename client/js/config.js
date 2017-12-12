@@ -182,6 +182,32 @@ this.buildings = (function() {
     _h: 20
   };
   
+  
+    units["_n"] = {
+    fiz: {
+      x: 1,
+      y: 1
+    },
+    img: "img/cub.png",
+    
+    x: 0,
+		y: 0,
+    w: 0,
+		h: 0,
+    
+    cx: 0,
+    cy: 0,
+    
+    _x: 0,
+    _y: 0,
+    _w: 40,
+    _h: 40
+  };
+  
+  
+  
+  
+  
    units["cub"] = {
     fiz: {
       x: 1,
@@ -197,11 +223,13 @@ this.buildings = (function() {
     cx: 0,
     cy: 150,
     
-    _x: 20,
-    _y: 20,
+    _x: -20,
+    _y: -20,
     _w: 40,
     _h: 40
   };
+  
+  
   
    units["b_2"] = {
     fiz: {
@@ -213,24 +241,24 @@ this.buildings = (function() {
     w: 241,
 		h: 189,
    
-    _x: 50,
-    _y: 50,
+    _x: -50,
+    _y: -50,
     _w: 128,
     _h: 128
   };
  
   units["b_3"] = {
     fiz: {
-      x: 5,
-      y: 5
+      x: 4,
+      y: 4
     },
     img: "img/building_3.png",
     
     w: 180,
 		h: 270,
    
-    _x: 70,
-    _y: 120,
+    _x: -68,
+    _y: -124,
     _w: 128,
     _h: 200
   };
@@ -250,8 +278,8 @@ this.buildings = (function() {
     cx: 0,
     cy: 53,
     
-    _x: 20,
-    _y: 20,
+    _x: -20,
+    _y: -20,
     _w: 40,
     _h: 40
   };
@@ -265,8 +293,8 @@ this.buildings = (function() {
     w: 250,
 		h: 190,
    
-    _x: 85,
-    _y: 30,
+    _x: -85,
+    _y: -30,
     _w: 170,
     _h: 128
   };
@@ -281,11 +309,68 @@ this.buildings = (function() {
     w: 170,
 		h: 80,
    
-    _x: 70,
-    _y: 10,
+    _x: -70,
+    _y: -10,
     _w: 170,
     _h: 80
   };
+ 
+  units["tree_1"] = {
+    fiz: {
+      x: 3,
+      y: 3
+    },
+    
+    img: "img/forest.png",
+    
+    x: 460,
+    y: 870,
+    w: 180,
+		h: 154,
+   
+    _x: -84,
+    _y: -107,
+    _w: 180,
+		_h: 154
+  };
+ 
+  units["tree_2"] = {
+    fiz: {
+      x: 1,
+      y: 1
+    },
+    
+    img: "img/forest.png",
+    
+    x: 133,
+    y: 784,
+    w: 50,
+		h: 104,
+   
+    _x: -28,
+    _y: -86,
+    _w: 50,
+		_h: 104
+  }; 
+ 
+  units["rock_1"] = {
+    fiz: {
+      x: 1,
+      y: 1
+    },
+    
+    img: "img/forest.png",
+    
+    x: 0,
+    y: 470,
+    w: 64,
+		h: 45,
+   
+    _x: -25,
+    _y: -12,
+    _w: 55,
+		_h: 38
+  };  
  
   for(var key in units){
     var u = units[key];
@@ -451,7 +536,48 @@ this.units = (function() {
     _h: 80
   };
  
- 
+ a["illu"] = {
+    fiz: {
+      x: 50,
+      y: 50
+    }, 
+    speed: 0.1,
+    img: {
+      "0": {
+        img: "img/illuminati.png",
+        x: 0,
+        y: 0,
+        w: 200,
+        h: 130
+      },
+      "90": {
+        img: "img/illuminati.png",
+        x: 400,
+        y: 0,
+        w: 200,
+        h: 130
+      },
+      "180": {
+        img: "img/illuminati.png",
+        x: 200,
+        y: 0,
+        w: 200,
+        h: 130
+      },
+      "270": {
+        img: "img/illuminati.png",
+        x: 400,
+        y: 0,
+        w: 200,
+        h: 130
+      }
+    },
+    
+    _x: 32,
+    _y: 7,
+    _w: 64,
+    _h: 41
+  };
  
  
   for(var key in a)

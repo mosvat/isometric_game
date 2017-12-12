@@ -26,7 +26,10 @@ window.a = {};
 function iscrossing(u1,u2){
   
   if( 
-
+      (u1.pos.x < 0) ||
+      (u1.pos.x + u1.fiz.x > 1500) ||
+      (u1.pos.y < 0) ||
+      (u1.pos.y + u1.fiz.y > 1500) ||
       
       ((u1 != u2) && 
       ((u1.pos.x + u1.fiz.x >= u2.pos.x) && (u1.pos.x <= u2.pos.x + u2.fiz.x )) && 
@@ -55,8 +58,38 @@ function c() {
         oldPos.x = obj.pos.x;
         oldPos.y = obj.pos.y;
         
-    var not_cross = [];
+    var not_cross = []; // layer 3
     var not_cross1 = []; // layer 2
+    var not_cross2 = []; // layer 1
+    
+    
+    
+    var a = app.layers[0].two;
+    for(var i in app.layers[0].map)
+      for(var j in app.layers[0].map[i]){
+        if(app.layers[0].map[i][j] == "g8"){
+          var _obj1 = {
+            pos: {
+              x: i * a.width,
+              y: j * a.height
+            },
+            fiz: {
+              x: i * a.width,
+              y: j * a.height
+            }
+          }
+          if( !iscrossing(obj,_obj1) ) not_cross2.push(_obj1);
+        };
+      };
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     var a = app.layers[1].two;
     app.layers[1].list.forEach(function(_obj){
@@ -68,7 +101,7 @@ function c() {
         fiz: {
           x: _obj.fiz.x * a.width,
           y: _obj.fiz.y * a.height
-        },
+        }
       }
       if( !iscrossing(obj,_obj1) ) not_cross1.push(_obj1);
     });
@@ -86,12 +119,13 @@ function c() {
         obj.pos.x = oldPos.x;
         obj.pos.y = oldPos.y;
        
-        
+        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
         _obj.vec.x += obj.vec.x * 0.5;
         _obj.vec.y += obj.vec.y * 0.5;
         
         obj.vec.x *= -1*0.5;
         obj.vec.y *= -1*0.5;
+        return;
         break;
       };
     }
@@ -103,16 +137,33 @@ function c() {
         obj.pos.x = oldPos.x;
         obj.pos.y = oldPos.y;
       
-        
-        obj.dir = ( obj.dir +  360 + (Math.random() < 0.5) ? 90 : -90       )%360 ;
+
+        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
     
         
-        obj.vec.x *= -1*0.5;
-        obj.vec.y *= -1*0.5;
+        obj.vec.x *= -0.5;
+        obj.vec.y *= -0.5;
+        return;
         break;
       };
     }
     
+     for(var i = 0; i < not_cross2.length; i++){
+      _obj = not_cross2[i];
+      if( iscrossing(obj,_obj) ) {
+        obj.pos.x = oldPos.x;
+        obj.pos.y = oldPos.y;
+      
+
+        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
+    
+        
+        obj.vec.x *= -0.5;
+        obj.vec.y *= -0.5;
+        return;
+        break;
+      };
+    }
     
   });
   window.setTimeout(c,50);
