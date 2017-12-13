@@ -43,11 +43,13 @@ function Game() {
     app.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     app.context.imageSmoothingEnabled = false;
     
+    
+    
     app.layers.forEach(function(i){
       i.render();
     });
     
-  
+    if(!!window.fiz) app.renders.lines(app.editor.layer || app.layers[0],app.size);
     
     var _pos = app.getPos(app.editor.layer || app.layers[0]);
     app.context.font = "20px Arial";
