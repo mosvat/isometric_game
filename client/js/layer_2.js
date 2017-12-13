@@ -1,6 +1,8 @@
 ;(function() {
 
 var _Layer_2 = function(app) {
+
+var max = app.size; 
   
 var iso = {
   width: 32,
@@ -60,7 +62,10 @@ function render() {
 var id = 0;
 function set(x,y,type){
   id++;
-    
+  
+  x = x < 0 ? 0 : x > max[0] ? max[0] : x;
+  y = y < 0 ? 0 : y > max[1] ? max[1] : y;
+  
   var obj = {
     id: id,
     pos: {
@@ -88,7 +93,12 @@ function del(obj){
   delete list[obj.id];
 }
   
-  
+function getBlock(x,y) {
+  return {
+    x: x = Math.ceil(y / two.width),
+    y: y = Math.ceil(x / two.height)
+  };
+};    
   
   // this = {
     // iso: iso,
@@ -114,6 +124,8 @@ function del(obj){
   
   this.set = set;
   this.del = del;
+  
+  this.getBlock = getBlock;
   
   this.render = render;
   

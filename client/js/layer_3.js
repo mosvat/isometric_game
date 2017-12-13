@@ -2,6 +2,8 @@
 
 var _Layer_3 = function(app) {
   
+var max = app.size; 
+  
 var iso = {
   width: 32,
   height: 16
@@ -17,30 +19,29 @@ var units = app.config["units"];
 var render_name = "units";
 var print = app.renders[render_name]; 
 
-
+var map = [];
 var list = [];  
 var toRad = Math.PI / 180;
 
 
 window.a = {};
-function iscrossing(u1,u2){
-  
-  if( 
-      (u1.pos.x < 0) ||
-      (u1.pos.x + u1.fiz.x > 1500) ||
-      (u1.pos.y < 0) ||
-      (u1.pos.y + u1.fiz.y > 1500) ||
-      
+function iscrossing(u1,u2){  
+  if(      
       ((u1 != u2) && 
       ((u1.pos.x + u1.fiz.x >= u2.pos.x) && (u1.pos.x <= u2.pos.x + u2.fiz.x )) && 
       ((u1.pos.y + u1.fiz.y >= u2.pos.y) && (u1.pos.y <= u2.pos.y + u2.fiz.y)))
-    ) return true
-   
+    ) return true   
   return false;
 }
  
 
 function c() {
+  
+  document.getElementById("text").innerHTML = JSON.stringify(list);
+  
+  
+  
+  
   list.forEach(function(obj){
     //============================================== change angle
     obj.dir = Math.random() < 0.01 ? (obj.dir   + (360 + ((Math.random() < 0.5) ? 90 : -90))    )%360 : obj.dir;
@@ -51,75 +52,40 @@ function c() {
     //============================================== [+] vector
     var d = ((obj.dir)%360)*toRad;
     var s = Math.random() < 1 ? obj.speed : 0;
-    obj.vec.x += s*Math.cos(d);
-    obj.vec.y += s*Math.sin(d);
+    
+    setVector(
+      obj,
+      obj.vec.x + s*Math.cos(d),
+      obj.vec.y + s*Math.sin(d)
+    );
     //============================================== set pos
-    var oldPos = {};
-        oldPos.x = obj.pos.x;
-        oldPos.y = obj.pos.y;
+    var oldPos = {
+      x: obj.pos.x,
+      y: obj.pos.y
+    };
         
     var not_cross = []; // layer 3
-    var not_cross1 = []; // layer 2
-    var not_cross2 = []; // layer 1
-    
-    
-    
-    var a = app.layers[0].two;
-    for(var i in app.layers[0].map)
-      for(var j in app.layers[0].map[i]){
-        if(app.layers[0].map[i][j] == "g8"){
-          var _obj1 = {
-            pos: {
-              x: i * a.width,
-              y: j * a.height
-            },
-            fiz: {
-              x: i * a.width,
-              y: j * a.height
-            }
-          }
-          if( !iscrossing(obj,_obj1) ) not_cross2.push(_obj1);
-        };
-      };
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    var a = app.layers[1].two;
-    app.layers[1].list.forEach(function(_obj){
-      var _obj1 = {
-        pos: {
-          x: _obj.pos.x * a.width,
-          y: _obj.pos.y * a.height
-        },
-        fiz: {
-          x: _obj.fiz.x * a.width,
-          y: _obj.fiz.y * a.height
-        }
-      }
-      if( !iscrossing(obj,_obj1) ) not_cross1.push(_obj1);
-    });
+
     
     list.forEach(function(_obj){
       if( !iscrossing(obj,_obj) ) not_cross.push(_obj);
     });      
     
-    obj.pos.x += Math.ceil(obj.vec.x);
-    obj.pos.y += Math.ceil(obj.vec.y);
+    
+    setPos(
+      obj,
+      obj.pos.x + Math.ceil(obj.vec.x),
+      obj.pos.y + Math.ceil(obj.vec.y)
+    );
     
     for(var i = 0; i < not_cross.length; i++){
       _obj = not_cross[i];
       if( iscrossing(obj,_obj) ) {
-        obj.pos.x = oldPos.x;
-        obj.pos.y = oldPos.y;
-       
-        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
+        setPos(obj,oldPos.x,oldPos.y);
+        setDir(
+          obj,
+          (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360
+        );
         _obj.vec.x += obj.vec.x * 0.5;
         _obj.vec.y += obj.vec.y * 0.5;
         
@@ -131,39 +97,7 @@ function c() {
     }
     
     
-    for(var i = 0; i < not_cross1.length; i++){
-      _obj = not_cross1[i];
-      if( iscrossing(obj,_obj) ) {
-        obj.pos.x = oldPos.x;
-        obj.pos.y = oldPos.y;
-      
-
-        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
-    
-        
-        obj.vec.x *= -0.5;
-        obj.vec.y *= -0.5;
-        return;
-        break;
-      };
-    }
-    
-     for(var i = 0; i < not_cross2.length; i++){
-      _obj = not_cross2[i];
-      if( iscrossing(obj,_obj) ) {
-        obj.pos.x = oldPos.x;
-        obj.pos.y = oldPos.y;
-      
-
-        obj.dir = (obj.dir +360 + (Math.random() < 0.5 ? 90 : -90) )%360;
-    
-        
-        obj.vec.x *= -0.5;
-        obj.vec.y *= -0.5;
-        return;
-        break;
-      };
-    }
+ 
     
   });
   window.setTimeout(c,50);
@@ -172,32 +106,87 @@ function c() {
 c(); 
 
 
-function set(x,y,unit){
+function setUnit(x,y,unit){
   x *= two.width;
   y *= two.height;
-  add(x,y,unit);
+  addUnit(x,y,unit);
 }
 
-
-function add(x,y,unit,dir) {
+function addUnit(x,y,unit,dir) {
   var obj = {};
-  obj.vec = {
-    x: 0,
-    y: 0
-  };
-  obj.dir = dir || ( Math.round((Math.random()*270)/90)*90       );
-  obj.pos = {
-    "x": x,
-    "y": y
-  };
   obj.__proto__ = units[unit];
+ 
+  obj.dir = 0;
+  obj.vec = {x:0,y:0};
+  obj.pos = {x:0,y:0};
+  
+  setDir(
+      obj,
+      dir || ( Math.round((Math.random()*270)/90)*90)
+  );
+  setPos(
+      obj,
+      x,
+      y
+  );
+  
   list.push(obj);
-}
+}   
 
-// add(0,0,"orc",0);  
-// add(1000,1000,"orc",90); 
-// add(1000,0,"orc",180);   
-// add(0,1000,"orc",270);   
+  
+var a = this; 
+function render() {
+  bubbleSort(list);
+  list.forEach(function(obj){
+    print(obj,a);
+  });
+};
+  
+  
+  
+function setPos(unit,x,y){
+  
+  // var _b = getBlock(x,y);
+ 
+  // if((window.h = ++window.h || 0)<10) console.log(_b);
+  
+  // for(var i = _b.x; i < _b.x + unit.fiz.x; i++)
+    // for(var j = _b.y; j < _b.y + unit.fiz.y; j++){
+      // map[j] = map[j] || [];
+      // map[j][i] = unit;
+    // }
+  
+  //var a = app.layers[3].getBlock(x,y);
+  //app.layers[3].set(a.y,a.x,"_")
+  
+  app.layers[3].set(10,0,"_")
+  
+  unit.pos.x = x < 0 ? unit.x : x + unit.fiz.x > max[0] ? max[0] - unit.fiz.x : x;
+  unit.pos.y = y < 0 ? unit.y : y + unit.fiz.y > max[1] ? max[1] - unit.fiz.y : y;
+};  
+  
+function setDir(unit,dir){
+  unit.dir = dir%360;
+};   
+  
+  
+function setVector(unit,x,y){
+  unit.vec.x = Math.ceil(x*100)/100;
+  unit.vec.y = Math.ceil(y*100)/100;
+};  
+  
+  
+
+function getBlock(x,y) {
+  return {
+    x: x = Math.ceil(y / two.width),
+    y: y = Math.ceil(x / two.height)
+  };
+};  
+  
+  
+  
+  
   
   
 function bubbleSort(a)
@@ -214,21 +203,9 @@ function bubbleSort(a)
             }
         }
     } while (swapped);
-}  
+}    
   
   
-  
-  
-var a = this; 
-function render() {
-  bubbleSort(list);
-  list.forEach(function(obj){
-    print(obj,a);
-  });
-};
-  
-  
-
   
 this.iso = iso;
 this.two = two;
@@ -236,11 +213,8 @@ this.units = units;
 this.render_name = render_name;
 this.list = list;  
 this.render = render;
-this.add = add;  
-this.set = set;  
-  
-  
-  
+this.add = addUnit;  
+this.set = setUnit;  
 };
 
 window.Layer_3 = _Layer_3;

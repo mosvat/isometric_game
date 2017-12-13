@@ -37,8 +37,8 @@ var _pack = function() {
   this.getBlock = function(l){
     app = this;
     var _pos = app.isoTo2D({
-      x: Math.round( ( app.mouse.x/app.zoom + app.camera.x )  ),
-      y: Math.round( ( app.mouse.y/app.zoom + app.camera.y )  )
+      x: Math.round( ( app.mouse.x / app.zoom + app.camera.x )  ),
+      y: Math.round( ( app.mouse.y / app.zoom + app.camera.y )  )
     }); 
     
     _pos.x = _pos.x / ( l.iso.width / 2 ) ;

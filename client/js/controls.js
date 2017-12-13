@@ -2,9 +2,6 @@
   
   var _calss = function(app){
     
-    
-
-    
   switch(true) {
     case (!!window.addEventListener): 
       switch(true) {
@@ -21,22 +18,18 @@
     default:
       window.attachEvent("onmousewheel", onWheel);
   };
-
-  
   
   var e = document.getElementById("editor");
   var b = e.getElementsByTagName("button")[0];
   b.addEventListener("click",function(){
     window.fiz = !window.fiz;
   });
-  
-  
+    
   window.addEventListener("keydown", keydown);
   window.addEventListener("resize", resize); 
   app.canvas.addEventListener("mousemove", mousemove);
   app.canvas.addEventListener("mousedown", mousedown);
   app.canvas.addEventListener("mouseup", mouseup);
-  
   
   var k = 0;
   
@@ -44,34 +37,30 @@
     if(app.editor.layer != undefined && app.editor.block != undefined) {
       
       var _pos = app.getPos(app.layers[0]);
-      
       var b = app.editor.layer.two;
       
       _pos.x = Math.floor( _pos.x / b.width );
       _pos.y = Math.floor( _pos.y / b.height );
-    
-    
-      app.editor.layer.set(_pos.y,_pos.x,        app.editor.block      );
+        
+      app.editor.layer.set(
+        _pos.y,
+        _pos.x,
+        app.editor.block
+      );
       window.show = app.editor.block;
-    }
-    
-      
+    }      
   }
   
-  
-  
   var LMB_press = false;
-  
+ 
   function mousedown(e) {
-    setB();
     LMB_press = true;
   };
   
-  
   function mouseup(e) {
+    setB();
     LMB_press = false;
   };
-  
   
   function mousemove(e) {
     app.mouse.x = e.offsetX == undefined ? e.layerX : e.offsetX;
@@ -87,11 +76,22 @@
     
   function keydown(e) {
     if(LMB_press) setB();
-    var k = e.keyCode;
-    if(k==87 ) app.camera.y -= 32;
-    if(k==83 ) app.camera.y += 32;
-    if(k==68 ) app.camera.x += 64;
-    if(k==65 ) app.camera.x -= 64;
+    
+    switch(e.keyCode){
+      case 87:
+        app.camera.y -= 32;
+        break;
+      case 83:
+        app.camera.y += 32;
+        break;      
+      case 68:
+        app.camera.x += 32;
+        break; 
+      case 65:
+        app.camera.x -= 32;
+        break;        
+      default:    
+    };
   };
     
   function onWheel(e) {

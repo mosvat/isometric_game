@@ -32,6 +32,8 @@ var _Layer_1 = function(app) {
     
     
   this.set = function(x,y,type){
+    x = x < 0 ? 0 : x;
+    y = y < 0 ? 0 : y;
     this.map[x] = this.map[x] || [];
       this.map[x][y] = type;
   }

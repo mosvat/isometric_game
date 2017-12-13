@@ -9,9 +9,8 @@ function Game() {
   app.context = app.canvas.getContext("2d");
   app.imagesArr = {};
   
-  
+  app.size = [1500,1500];
   app.zoom = 1;
-  //app.BLOCK_SIZE = 64;
   
   app.greenL = [];
   app.redL = [];
@@ -52,7 +51,8 @@ function Game() {
   app.layers = [
     new Layer_1(app),
     new Layer_2(app),
-    new Layer_3(app)
+    new Layer_3(app),
+    new Layer_2(app)
   ];
   
   this.app = app;

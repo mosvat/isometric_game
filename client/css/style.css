@@ -1,3 +1,14 @@
+#text {
+    position: absolute;
+    bottom: 0px;
+    height: 40%;
+    width: 20%;
+}
+
+
+
+
+
 body {
 	top: 0px;
 	left: 0px;

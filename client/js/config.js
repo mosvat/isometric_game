@@ -205,7 +205,26 @@ this.buildings = (function() {
   };
   
   
-  
+  units["_"] = {
+    fiz: {
+      x: 1,
+      y: 1
+    },
+    img: "img/layer_2.png",
+    
+    x: 0,
+		y: 0,
+    w: 256,
+		h: 128,
+    
+    cx: 0,
+    cy: 128,
+    
+    _x: -20,
+    _y: 0,
+    _w: 40,
+    _h: 20
+  };  
   
   
    units["cub"] = {
