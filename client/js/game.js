@@ -12,34 +12,8 @@ function Game() {
   app.size = [1500,1500];
   app.zoom = 1;
   
-  app.greenL = [];
-  app.redL = [];
-
-  app.start_dot = finish_dot = {
-    x: 0,
-    y: 0
-  };
-
-  app.last_way = [];
-  app.lastKey = 0;
-
-  app.camera = {
-    x: 0,
-    y: 0
-  };
-
-  app.mouse = {
-    x: 0,
-    y: 0
-  }
-  
-  
-  
-  
-  
-  
-  
-  
+  app.camera = {x:0,y:0};
+  app.mouse = {x:0,y: 0};
   
   window.func_packs.forEach(function(e){
     e.call(app);
@@ -56,22 +30,6 @@ function Game() {
   ];
   
   this.app = app;
-  
-  // var sources = {
-			// "img/forest.png": "img/forest.png",
-      // "img/layer_2.png": "img/layer_2.png",
-      // "img/ground.png": "img/ground.png",
-      // "img/buildings.png": "img/buildings.png",
-      // "img/building_1.png": "img/building_1.png", 
-  // };
-		
-  // app.loadImages(sources,()=>{console.log("done")}); 
-  
-  
-  
-  
-  
-  
   
   
   //====================== start
@@ -91,13 +49,13 @@ function Game() {
     
   
     
-    var _pos = app.getPos(app.layers[0]);
+    var _pos = app.getPos(app.editor.layer || app.layers[0]);
     app.context.font = "20px Arial";
-    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 25 );
+    app.context.fillText(_pos.y + " | " + _pos.x, 5 , 25 );
     
-    var _pos = app.getBlock(app.layers[0]);
+    var _pos = app.getBlock(app.editor.layer || app.layers[0]);
     app.context.font = "20px Arial";
-    app.context.fillText(_pos.x + " | " + _pos.y, 5 , 45 );
+    app.context.fillText(_pos.y + " | " + _pos.x, 5 , 45 );
 
     
 

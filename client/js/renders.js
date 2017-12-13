@@ -264,12 +264,17 @@
    
       ctx.stroke();
       
-       ctx.fillText(
+      ctx.fillText(
        obj.dir, 
         _pos.x,
         _pos.y
       ); 
       
+      ctx.fillText(
+        obj.pos.x + " | " + obj.pos.y, 
+        _pos.x,
+        _pos.y+25
+      );      
       
     }; 
   

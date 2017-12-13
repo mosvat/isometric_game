@@ -2,17 +2,17 @@
 
 var _pack = function() {
   this.twoDToIso = function(p){
-    var point = {};
-    point.x = -(p.x - p.y);
-    point.y = (p.x + p.y) / 2; 
-    return point;
+    return {
+      x: -(p.x - p.y),
+      y:  (p.x + p.y) / 2
+    };
   };
   
   this.isoTo2D = function(p){
-    var point = {};
-    point.x = (p.x/2 + p.y);
-    point.y = -p.x/2 + p.y;
-    return point;
+    return {
+      x: (p.x/2 + p.y),
+      y: -p.x/2 + p.y
+    };
   };
  
   
@@ -24,30 +24,52 @@ var _pack = function() {
     return {x: a, y: b};
   };
 
+  // this.getPos = function(l){
+    // app = this;
+    // var _pos = this.getBlock(l)
+    
+    // _pos.x *= l.two.width ;
+    // _pos.y *= l.two.height;
+    
+    // return _pos;
+  // };  
+  
+  // this.getBlock = function(l){
+    // app = this;
+    // var _pos = app.isoTo2D({
+      // x: Math.round( ( app.mouse.x / app.zoom + app.camera.x )  ),
+      // y: Math.round( ( app.mouse.y / app.zoom + app.camera.y )  )
+    // }); 
+    
+    // _pos.x = Math.floor( _pos.x / ( l.iso.width / 2 ) ) ;
+    // _pos.y = Math.floor( _pos.y /   l.iso.height ) ;
+    
+    // return _pos;
+  // }; 
+  
   this.getPos = function(l){
     app = this;
-    var _pos = this.getBlock(l)
+    var _pos = app.isoTo2D({
+      x: ( app.mouse.x / app.zoom + app.camera.x ) ,
+      y: ( app.mouse.y / app.zoom + app.camera.y ) 
+    }); 
     
-    _pos.x *= l.two.width ;
-    _pos.y *= l.two.height;
-    
+    _pos.x = Math.floor(  (_pos.x / ( l.iso.width / 2 )) * l.two.width ) ;
+    _pos.y = Math.floor(  (_pos.y /   l.iso.height) * l.two.height );
+
     return _pos;
   };  
   
   this.getBlock = function(l){
     app = this;
-    var _pos = app.isoTo2D({
-      x: Math.round( ( app.mouse.x / app.zoom + app.camera.x )  ),
-      y: Math.round( ( app.mouse.y / app.zoom + app.camera.y )  )
-    }); 
     
-    _pos.x = _pos.x / ( l.iso.width / 2 ) ;
-    _pos.y = _pos.y /   l.iso.height;
+    var _pos = this.getPos(l)
+    
+    _pos.x = Math.floor( _pos.x / l.two.width ) ;
+    _pos.y = Math.floor( _pos.y / l.two.height ) ;
     
     return _pos;
-  }; 
-  
-  
+  };   
   
   
   
