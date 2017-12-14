@@ -31,8 +31,6 @@
   app.canvas.addEventListener("mousedown", mousedown);
   app.canvas.addEventListener("mouseup", mouseup);
   
-  var k = 0;
-  
   function setB() {
     if(app.editor.layer != undefined && app.editor.block != undefined) {
       
@@ -69,37 +67,96 @@
   };	
   
   
+
+    
+  
+  var timer_camera = false;
+  var _camera = {x:0,y:0};
+  
+  
+  
+  function keydown(e) {
+    if(LMB_press) setB();
+    var s = 32;
+    switch(e.keyCode){
+      case 87:
+        _camera.y -= s;
+        break;
+      case 83:
+        _camera.y += s;
+        break;      
+      case 68:
+        _camera.x += s;
+        break; 
+      case 65:
+        _camera.x -= s;
+        break;        
+      default:    
+    };
+    
+    if(!timer_camera && !(_camera.x == app.camera.x && _camera.y == app.camera.y)) {
+      timer_camera = true;
+      tocam();
+      return;
+      };  
+    
+  };
+  
+  function tocam() {
+    if(_camera.x == app.camera.x && _camera.y == app.camera.y) {
+      timer_camera = false;
+      return;
+      };  
+
+    var speed = 16;    
+    
+    app.camera.x += 1 > Math.abs(_camera.x - app.camera.x) ? 0 : _camera.x > app.camera.x ? speed : _camera.x < app.camera.x ? -speed : 0; 
+    app.camera.y += 1 > Math.abs(_camera.y - app.camera.y) ? 0 : _camera.y > app.camera.y ? speed : _camera.y < app.camera.y ? -speed : 0; 
+
+    setTimeout(tocam,10);
+  }  
+  
+  
+  
+  
+  
+  
+  
+
   function resize(e) {
     app.canvas.width = window.innerWidth || 100;
     app.canvas.height = window.innerHeight || 100;
   };
-    
-  function keydown(e) {
-    if(LMB_press) setB();
-    
-    switch(e.keyCode){
-      case 87:
-        app.camera.y -= 32;
-        break;
-      case 83:
-        app.camera.y += 32;
-        break;      
-      case 68:
-        app.camera.x += 32;
-        break; 
-      case 65:
-        app.camera.x -= 32;
-        break;        
-      default:    
-    };
-  };
-    
+
+  var timer_zoom = false;
+  var _zoom = app.zoom;
+  
   function onWheel(e) {
     e = e || window.event;
     var delta = e.deltaY || e.detail || e.wheelDelta;
-    app.zoom += (delta/400);
+    var _d = (delta/200);
+    _zoom = _zoom + _d < 0.25 ? 0.25 : _zoom + _d;
+    if(!timer_zoom) {
+      timer_zoom = true;
+      tozoom()
+      };
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
   } 
+    
+    
+  function tozoom() {
+    if(_zoom == app.zoom) {
+      timer_zoom = false;
+      return;
+      };  
+
+    var speed = 0.025;    
+    app.zoom +=  0.05 > Math.abs(_zoom - app.zoom) ? 0 : _zoom > app.zoom ? speed : _zoom < app.zoom ? -speed : 0;    
+    
+    setTimeout(tozoom,10);
+  }  
+    
+    
     
     
   };

@@ -50,8 +50,8 @@ var _pack = function() {
   this.getPos = function(l){
     app = this;
     var _pos = app.isoTo2D({
-      x: ( app.mouse.x / app.zoom + app.camera.x ) ,
-      y: ( app.mouse.y / app.zoom + app.camera.y ) 
+      x: ( (app.mouse.x - (app.canvas.width/2)) / app.zoom + app.camera.x) ,
+      y: ( (app.mouse.y - (app.canvas.height/2)) / app.zoom + app.camera.y) 
     }); 
     
     _pos.x = Math.floor(  (_pos.x / ( l.iso.width / 2 )) * l.two.width ) ;

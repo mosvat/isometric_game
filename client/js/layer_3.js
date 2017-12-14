@@ -5,13 +5,13 @@
         var max = app.size;
 
         var iso = {
-            width: 32,
-            height: 16
+            width: 64,
+            height: 32
         };
 
         var two = {
-            width: 25,
-            height: 25
+            width: 50,
+            height: 50
         };
 
 
@@ -38,7 +38,7 @@
 
         function c() {
 
-            document.getElementById("text").innerHTML = JSON.stringify(list);
+            
 
 
 
@@ -204,10 +204,16 @@
             //var a = app.layers[3].getBlock(x,y);
             //app.layers[3].set(a.y,a.x,"_")
 
-            app.layers[3].set(10, 0, "_")
+            
+
+
 
             unit.pos.x = x < 0 ? unit.x : x + unit.fiz.x > max[0] ? max[0] - unit.fiz.x : x;
             unit.pos.y = y < 0 ? unit.y : y + unit.fiz.y > max[1] ? max[1] - unit.fiz.y : y;
+            
+            var _pos = app.layers[3].getBlock(unit.pos.x,unit.pos.y);   
+                
+            // app.layers[3].set(_pos.x, _pos.y, "_");
         };
 
         function setDir(unit, dir) {

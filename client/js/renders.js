@@ -51,10 +51,10 @@
                 t.y,
                 t.w,
                 t.h,
-                Math.round(_pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom),
-                Math.round(_pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom),
-                Math.round(coef.w * t._w * app.zoom),
-                Math.round(coef.h * t._h * app.zoom)
+                Math.round(_pos.x + app.canvas.width/2 - (app.camera.x - (coef.w * t._x)) * app.zoom) -2,
+                Math.round(_pos.y + app.canvas.height/2 - (app.camera.y - (coef.h * t._y)) * app.zoom) -2,
+                Math.round(coef.w * t._w * app.zoom) +2,
+                Math.round(coef.h * t._h * app.zoom) +2
             );
 
 
@@ -101,8 +101,8 @@
                 t.y,
                 t.w,
                 t.h,
-                _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom,
-                _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom,
+                _pos.x - (app.camera.x - (coef.w * t._x)) * app.zoom + app.canvas.width/2,
+                _pos.y - (app.camera.y - (coef.h * t._y)) * app.zoom + app.canvas.height/2,
                 coef.w * t._w * app.zoom,
                 coef.h * t._h * app.zoom
             );
@@ -126,8 +126,8 @@
                 });
 
                 _pos = {
-                    x: _pos.x - (app.camera.x * app.zoom),
-                    y: _pos.y - (app.camera.y * app.zoom)
+                    x: _pos.x - (app.camera.x * app.zoom) + app.canvas.width/2,
+                    y: _pos.y - (app.camera.y * app.zoom) + app.canvas.height/2
                 };
 
 
@@ -210,8 +210,8 @@
                 i.y,
                 i.w,
                 i.h,
-                _pos.x - (app.camera.x + t._x) * app.zoom,
-                _pos.y - (app.camera.y + t._y) * app.zoom,
+                _pos.x - (app.camera.x + t._x) * app.zoom + app.canvas.width/2,
+                _pos.y - (app.camera.y + t._y) * app.zoom + app.canvas.height/2,
                 t._w * app.zoom,
                 t._h * app.zoom
             );
@@ -234,8 +234,8 @@
             });
 
             _pos = {
-                x: _pos.x - (app.camera.x * app.zoom),
-                y: _pos.y - (app.camera.y * app.zoom)
+                x: _pos.x - (app.camera.x * app.zoom) + app.canvas.width/2,
+                y: _pos.y - (app.camera.y * app.zoom) + app.canvas.height/2
             };
 
             ctx.beginPath();
@@ -298,8 +298,8 @@
             });
 
             _pos = {
-                x: _pos.x - (app.camera.x * app.zoom),
-                y: _pos.y - (app.camera.y * app.zoom)
+                x: _pos.x - (app.camera.x * app.zoom) + app.canvas.width/2,
+                y: _pos.y - (app.camera.y * app.zoom) + app.canvas.height/2
             };
 
             var _x = app.twoDToIso({

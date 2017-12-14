@@ -95,8 +95,8 @@ function del(obj){
   
 function getBlock(x,y) {
   return {
-    x: x = Math.ceil(y / two.width),
-    y: y = Math.ceil(x / two.height)
+    x: x = Math.ceil(x / two.width),
+    y: y = Math.ceil(y / two.height)
   };
 };    
   
