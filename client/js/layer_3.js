@@ -37,12 +37,6 @@
 
 
         function c() {
-
-            
-
-
-
-
             list.forEach(function(obj) {
                 //============================================== change angle
                 obj.dir = Math.random() < 0.01 ? (obj.dir + (360 + ((Math.random() < 0.5) ? 90 : -90))) % 360 : obj.dir;

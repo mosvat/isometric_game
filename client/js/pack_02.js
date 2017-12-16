@@ -83,9 +83,9 @@
                 j.style.width = o._w + "px";
                 j.style.height = o._h + "px";
                 // j.style.background = `rgb(${r()},${r()},${r()}) url('img/blockline.png')`;
-                j.style.background = `url('img/blockline.png')`;
-                j.style.imageRendering = "pixelated";
-                j.style.backgroundSize = "20px 20px";
+                //j.style.background = `url('img/blockline.png')`;
+                //j.style.imageRendering = "pixelated";
+                //j.style.backgroundSize = "20px 20px";
                 j.b = arr[key][0];
                 j.addEventListener("click", setBlock);
                 b.appendChild(j);

@@ -262,23 +262,23 @@
                 _pos.y,
             );
             ctx.closePath();
-            ctx.fillStyle = "rgba(0,255,0,0.5)";
+            ctx.fillStyle = "rgba(0,0,255,0.9)";
             ctx.fill();
 
             
             //ctx.stroke();
 
-            ctx.fillText(
-                obj.dir,
-                _pos.x,
-                _pos.y
-            );
+            // ctx.fillText(
+                // obj.dir,
+                // _pos.x,
+                // _pos.y
+            // );
 
-            ctx.fillText(
-                obj.pos.x + " | " + obj.pos.y,
-                _pos.x,
-                _pos.y + 25
-            );
+            // ctx.fillText(
+                // obj.pos.x + " | " + obj.pos.y,
+                // _pos.x,
+                // _pos.y + 25
+            // );
 
         };
 

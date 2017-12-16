@@ -12,6 +12,7 @@ function Game() {
   app.size = [1500,1500];
   app.zoom = 1;
   
+  app._camera = {x:0,y:0};
   app.camera = {x:0,y:0};
   app.mouse = {x:0,y: 0};
   

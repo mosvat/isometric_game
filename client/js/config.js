@@ -391,6 +391,35 @@ this.buildings = (function() {
 		_h: 38
   };  
  
+ 
+ units["hrush_1"] = {
+    fiz: {
+      x: 9,
+      y: 18
+    },
+    
+    img: "img/hrush_1.png",
+    
+    x: 0,
+    y: 0,
+    w: 560,
+		h: 410,
+   
+    _x: -190,
+    _y: -145,
+    _w: 560,
+		_h: 410
+  };  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   for(var key in units){
     var u = units[key];
     units[key].__proto__ = _default;

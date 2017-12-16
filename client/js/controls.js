@@ -52,6 +52,7 @@
   var LMB_press = false;
  
   function mousedown(e) {
+     step_up = true;
     LMB_press = true;
   };
   
@@ -71,10 +72,14 @@
     
   
   var timer_camera = false;
-  var _camera = {x:0,y:0};
   
+  var _camera = app._camera,
+       step_x = 0,
+       step_y = 0,
+       step_up = false;
   
-  
+  var step = 20;
+      
   function keydown(e) {
     if(LMB_press) setB();
     var s = 32;
@@ -94,6 +99,7 @@
       default:    
     };
     
+    step_up = true;
     if(!timer_camera && !(_camera.x == app.camera.x && _camera.y == app.camera.y)) {
       timer_camera = true;
       tocam();
@@ -103,16 +109,28 @@
   };
   
   function tocam() {
+    
+    if(step_up){
+      step_x = (_camera.x - app.camera.x)/step;
+      step_y = (_camera.y - app.camera.y)/step;
+      step_up = !1;
+    }
+    
+    
     if(_camera.x == app.camera.x && _camera.y == app.camera.y) {
       timer_camera = false;
       return;
       };  
 
-    var speed = 16;    
-    
-    app.camera.x += 1 > Math.abs(_camera.x - app.camera.x) ? 0 : _camera.x > app.camera.x ? speed : _camera.x < app.camera.x ? -speed : 0; 
-    app.camera.y += 1 > Math.abs(_camera.y - app.camera.y) ? 0 : _camera.y > app.camera.y ? speed : _camera.y < app.camera.y ? -speed : 0; 
+    // var speed = 1;        
+    // app.camera.x += 1 > Math.abs(_camera.x - app.camera.x) ? 0 : _camera.x > app.camera.x ? speed : _camera.x < app.camera.x ? -speed : 0; 
+    // app.camera.y += 1 > Math.abs(_camera.y - app.camera.y) ? 0 : _camera.y > app.camera.y ? speed : _camera.y < app.camera.y ? -speed : 0; 
 
+
+    
+    app.camera.x += step_x > Math.abs(_camera.x - app.camera.x) ? 0 : step_x;
+    app.camera.y += step_y > Math.abs(_camera.y - app.camera.y) ? 0 : step_y;
+    
     setTimeout(tocam,10);
   }  
   
@@ -132,6 +150,12 @@
   var _zoom = app.zoom;
   
   function onWheel(e) {
+    var m = app.mouse;
+    var _c = app._camera;
+    
+    _c.x += (m.x - app.canvas.width/2)/app.zoom;
+    _c.y += (m.y - app.canvas.height/2)/app.zoom;
+    
     e = e || window.event;
     var delta = e.deltaY || e.detail || e.wheelDelta;
     var _d = (delta/200);
@@ -141,6 +165,13 @@
       tozoom()
       };
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    
+      step_up = true;
+      if(!timer_camera && !(_camera.x == app.camera.x && _camera.y == app.camera.y)) {
+      timer_camera = true;
+      tocam();
+      return;
+      }; 
   } 
     
     
