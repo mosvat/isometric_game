@@ -70,14 +70,8 @@
   
 
     
-  
-  var timer_camera = false;
-  
-  var _camera = app._camera,
-       step_x = 0,
-       step_y = 0,
-       step_up = false;
-  
+
+  var _camera = app.camera;
   var step = 20;
       
   function keydown(e) {
@@ -97,58 +91,18 @@
         _camera.x -= s;
         break;        
       default:    
-    };
-    
-    step_up = true;
-    if(!timer_camera && !(_camera.x == app.camera.x && _camera.y == app.camera.y)) {
-      timer_camera = true;
-      tocam();
-      return;
-      };  
-    
+    }; 
   };
   
-  function tocam() {
-    
-    if(step_up){
-      step_x = (_camera.x - app.camera.x)/step;
-      step_y = (_camera.y - app.camera.y)/step;
-      step_up = !1;
-    }
-    
-    
-    if(_camera.x == app.camera.x && _camera.y == app.camera.y) {
-      timer_camera = false;
-      return;
-      };  
+ 
 
-    // var speed = 1;        
-    // app.camera.x += 1 > Math.abs(_camera.x - app.camera.x) ? 0 : _camera.x > app.camera.x ? speed : _camera.x < app.camera.x ? -speed : 0; 
-    // app.camera.y += 1 > Math.abs(_camera.y - app.camera.y) ? 0 : _camera.y > app.camera.y ? speed : _camera.y < app.camera.y ? -speed : 0; 
-
-
-    
-    app.camera.x += step_x > Math.abs(_camera.x - app.camera.x) ? 0 : step_x;
-    app.camera.y += step_y > Math.abs(_camera.y - app.camera.y) ? 0 : step_y;
-    
-    setTimeout(tocam,10);
-  }  
-  
-  
-  
-  
-  
-  
-  
 
   function resize(e) {
     app.canvas.width = window.innerWidth || 100;
     app.canvas.height = window.innerHeight || 100;
   };
 
-  var timer_zoom = false;
-  var _zoom = app.zoom;
-  
+
   function onWheel(e) {
     var m = app.mouse;
     var _c = app._camera;
@@ -159,33 +113,14 @@
     e = e || window.event;
     var delta = e.deltaY || e.detail || e.wheelDelta;
     var _d = (delta/200);
-    _zoom = _zoom + _d < 0.25 ? 0.25 : _zoom + _d;
-    if(!timer_zoom) {
-      timer_zoom = true;
-      tozoom()
-      };
+    
+    app.zoom = app.zoom + _d < 0.25 ? 0.25 : app.zoom + _d;    
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     
-      step_up = true;
-      if(!timer_camera && !(_camera.x == app.camera.x && _camera.y == app.camera.y)) {
-      timer_camera = true;
-      tocam();
-      return;
-      }; 
+     
   } 
     
     
-  function tozoom() {
-    if(_zoom == app.zoom) {
-      timer_zoom = false;
-      return;
-      };  
-
-    var speed = 0.025;    
-    app.zoom +=  0.05 > Math.abs(_zoom - app.zoom) ? 0 : _zoom > app.zoom ? speed : _zoom < app.zoom ? -speed : 0;    
-    
-    setTimeout(tozoom,10);
-  }  
     
     
     
