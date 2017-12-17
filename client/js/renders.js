@@ -265,7 +265,6 @@
             ctx.fillStyle = "rgba(0,0,255,0.9)";
             ctx.fill();
 
-            
             //ctx.stroke();
 
             // ctx.fillText(
