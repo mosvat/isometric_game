@@ -194,20 +194,21 @@
             // map[j] = map[j] || [];
             // map[j][i] = unit;
             // }
-
-            //var a = app.layers[3].getBlock(x,y);
-            //app.layers[3].set(a.y,a.x,"_")
-
-            
-
-
-
+ 
+            var a = app.layers[3].getBlock(unit.pos.x,unit.pos.y),
+                b = app.layers[3].getBlock(unit.pos.x + unit.fiz.x,unit.pos.y + unit.fiz.y);           
+            for(var i = a.x; i <= b.x; i++)
+              for(var j = a.y; j <= b.y; j++)
+                app.layers[3].delpos(i,j);       
+           
             unit.pos.x = x < 0 ? unit.x : x + unit.fiz.x > max[0] ? max[0] - unit.fiz.x : x;
             unit.pos.y = y < 0 ? unit.y : y + unit.fiz.y > max[1] ? max[1] - unit.fiz.y : y;
             
-            var _pos = app.layers[3].getBlock(unit.pos.x,unit.pos.y);   
-                
-            // app.layers[3].set(_pos.x, _pos.y, "_");
+            var a = app.layers[3].getBlock(unit.pos.x,unit.pos.y),
+                b = app.layers[3].getBlock(unit.pos.x + unit.fiz.x,unit.pos.y + unit.fiz.y);                    
+            for(var i = a.x; i <= b.x; i++)
+              for(var j = a.y; j <= b.y; j++)
+                app.layers[3].set(i,j,"_n");           
         };
 
         function setDir(unit, dir) {

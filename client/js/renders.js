@@ -165,7 +165,7 @@
 
 
                 ctx.fillText(
-                    z,
+                    obj.pos.x + " | " + obj.pos.y,
                     _pos.x,
                     _pos.y
                 );

@@ -30,6 +30,11 @@ function Game() {
     new Layer_2(app)
   ];
   
+  app.layers[3].iso.width = 64;
+  app.layers[3].iso.height = 32;
+  app.layers[3].two.width = 50;
+  app.layers[3].two.height = 50;
+  
   this.app = app;
   
   

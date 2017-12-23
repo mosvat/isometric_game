@@ -92,11 +92,24 @@ function del(obj){
     }; 
   delete list[obj.id];
 }
+
+
+function delpos(x,y){
+  var id;
+  if(((id = map[x]) == undefined) || ((id = id[y]) == undefined)) return;
+  del(list[id]);  
+  if(!(window.g > 10))console.log(x,y,window.g = ++window.g || 0);  
+}
+
+
+
+
+
   
 function getBlock(x,y) {
   return {
-    x: x = Math.ceil(x / two.width),
-    y: y = Math.ceil(y / two.height)
+    x: x = Math.floor(x / two.width),
+    y: y = Math.floor(y / two.height)
   };
 };    
   
@@ -124,6 +137,7 @@ function getBlock(x,y) {
   
   this.set = set;
   this.del = del;
+  this.delpos = delpos;
   
   this.getBlock = getBlock;
   
