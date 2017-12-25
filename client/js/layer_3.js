@@ -3,7 +3,6 @@
     var _Layer_3 = function(app) {
 
         var max = app.size;
-
         var iso = {
             width: 64,
             height: 32
@@ -14,12 +13,15 @@
             height: 50
         };
 
-
         var units = app.config["units"];
         var render_name = "units";
         var print = app.renders[render_name];
 
-        var map = [];
+        var map = [
+            [ [], [], [] ],
+            [ [], [], [] ],
+            [ [], [], [] ]
+        ];
         var list = [];
         var toRad = Math.PI / 180;
 
@@ -62,26 +64,26 @@
                 var not_cross_2 = []; // layer 2
                 var not_cross_1 = []; // layer 1
                 var not_cross_0 = []; // layer 0
-                
-                
+
+
                 // layer 1
-                    var a = app.layers[1].two;
-                      app.layers[1].list.forEach(function(_obj){
-                        var _obj1 = {
-                          pos: {
+                var a = app.layers[1].two;
+                app.layers[1].list.forEach(function(_obj) {
+                    var _obj1 = {
+                        pos: {
                             x: _obj.pos.x * a.width,
                             y: _obj.pos.y * a.height
-                          },
-                          fiz: {
+                        },
+                        fiz: {
                             x: _obj.fiz.x * a.width,
                             y: _obj.fiz.y * a.height
-                          }
                         }
-                        if( !iscrossing(obj,_obj1) ) not_cross_2.push(_obj1);
-                      });
+                    }
+                    if (!iscrossing(obj, _obj1)) not_cross_2.push(_obj1);
+                });
                 // /layer1
-                
-                
+
+
                 list.forEach(function(_obj) {
                     if (!iscrossing(obj, _obj)) not_cross_2.push(_obj);
                 });
@@ -109,34 +111,27 @@
                         return;
                         break;
                     };
-                }
-
-            for(var i = 0; i < not_cross_2.length; i++){
-                        _obj = not_cross_2[i];
-                        if( iscrossing(obj,_obj) ) {
-                  setPos(obj, oldPos.x, oldPos.y);
-      
-
+                };
+                for (var i = 0; i < not_cross_2.length; i++) {
+                    _obj = not_cross_2[i];
+                    if (iscrossing(obj, _obj)) {
+                        setPos(obj, oldPos.x, oldPos.y);
                         setDir(
                             obj,
                             (obj.dir + 360 + (Math.random() < 0.5 ? 90 : -90)) % 360
                         );
-    
-        
-        obj.vec.x *= -0.5;
-        obj.vec.y *= -0.5;
-        return;
-        break;
-      };
-    }
-
+                        obj.vec.x *= -0.5;
+                        obj.vec.y *= -0.5;
+                        return;
+                        break;
+                    };
+                };
 
             });
             window.setTimeout(c, 50);
         }
 
         c();
-
 
         function setUnit(x, y, unit) {
             x *= two.width;
@@ -171,7 +166,6 @@
             list.push(obj);
         }
 
-
         var a = this;
 
         function render() {
@@ -181,57 +175,50 @@
             });
         };
 
-
-
         function setPos(unit, x, y) {
 
-            // var _b = getBlock(x,y);
 
-            // if((window.h = ++window.h || 0)<10) console.log(_b);
+            var a = getBlock(unit.pos.x, unit.pos.y),
+                b = getBlock(unit.pos.x + unit.fiz.x, unit.pos.y + unit.fiz.y);
+            for (var i = a.x; i <= b.x; i++)
+                for (var j = a.y; j <= b.y; j++) {
+                    var m = map[i] || (map[i] = []);
+                    m = m[j] || (m[j] = []);
+                    m.splice(m.indexOf(unit), 1);
+                    // app.layers[3].delpos(i,j); 
+                };
 
-            // for(var i = _b.x; i < _b.x + unit.fiz.x; i++)
-            // for(var j = _b.y; j < _b.y + unit.fiz.y; j++){
-            // map[j] = map[j] || [];
-            // map[j][i] = unit;
-            // }
- 
-            var a = app.layers[3].getBlock(unit.pos.x,unit.pos.y),
-                b = app.layers[3].getBlock(unit.pos.x + unit.fiz.x,unit.pos.y + unit.fiz.y);           
-            for(var i = a.x; i <= b.x; i++)
-              for(var j = a.y; j <= b.y; j++)
-                app.layers[3].delpos(i,j);       
-           
             unit.pos.x = x < 0 ? unit.x : x + unit.fiz.x > max[0] ? max[0] - unit.fiz.x : x;
             unit.pos.y = y < 0 ? unit.y : y + unit.fiz.y > max[1] ? max[1] - unit.fiz.y : y;
-            
-            var a = app.layers[3].getBlock(unit.pos.x,unit.pos.y),
-                b = app.layers[3].getBlock(unit.pos.x + unit.fiz.x,unit.pos.y + unit.fiz.y);                    
-            for(var i = a.x; i <= b.x; i++)
-              for(var j = a.y; j <= b.y; j++)
-                app.layers[3].set(i,j,"_n");           
+
+            var a = getBlock(unit.pos.x, unit.pos.y),
+                b = getBlock(unit.pos.x + unit.fiz.x, unit.pos.y + unit.fiz.y);
+            for (var i = a.x; i <= b.x; i++)
+                for (var j = a.y; j <= b.y; j++) {
+                    var m = map[i] || (map[i] = []);
+                    m = m[j] || (m[j] = []);
+                    m.push(unit);
+                    // app.layers[3].set(i,j,"_n");        
+                };
+
+            return;
         };
 
         function setDir(unit, dir) {
             unit.dir = dir % 360;
         };
 
-
         function setVector(unit, x, y) {
-            unit.vec.x = Math.ceil(x * 100) / 100;
-            unit.vec.y = Math.ceil(y * 100) / 100;
+            unit.vec.x = Math.floor(x * 100) / 100;
+            unit.vec.y = Math.floor(y * 100) / 100;
         };
-
-
 
         function getBlock(x, y) {
             return {
-                x: x = Math.ceil(y / two.width),
-                y: y = Math.ceil(x / two.height)
+                x: Math.floor(x / two.width),
+                y: Math.floor(y / two.height)
             };
         };
-
-
-
 
         function bubbleSort(a) {
             var swapped;
@@ -247,7 +234,6 @@
                 }
             } while (swapped);
         }
-
 
 
         this.iso = iso;
